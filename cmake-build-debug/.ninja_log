@@ -1,5 +1,10 @@
 # ninja log v5
-1	501	7314424635183490	CMakeFiles/demo.dir/main.cpp.obj	6e73ee39ce784829
-503	668	7314424636785002	demo.exe	228d6efd9e55b6e0
-0	403	7314437131804442	CMakeFiles/demo.dir/main.cpp.obj	6e73ee39ce784829
+4	550	7315277324148524	CMakeFiles/demo.dir/main.cpp.obj	6e73ee39ce784829
 403	512	7314437132860664	demo.exe	228d6efd9e55b6e0
+8	343	7315278058030715	CMakeFiles/demo.dir/car.cpp.obj	69135d2c31b3daa6
+15	515	7315278059757357	CMakeFiles/demo.dir/main.cpp.obj	6e73ee39ce784829
+3	567	7315278060290952	CMakeFiles/demo.dir/functions.cpp.obj	c3fcedd8edd479cc
+568	702	7315278061594057	demo.exe	7e839e0e3171ecb8
+10	621	7315281838237685	CMakeFiles/demo.dir/main.cpp.obj	6e73ee39ce784829
+3	651	7315281838550681	CMakeFiles/demo.dir/functions.cpp.obj	c3fcedd8edd479cc
+651	776	7315281839777376	demo.exe	7e839e0e3171ecb8
