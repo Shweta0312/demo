@@ -57,6 +57,33 @@ void manageCar(std::vector<Car>& cars) {
 }
 
 void manageSubscriber() {
+<<<<<<< HEAD
+                     char subChoice;
+                     std::cout << "Manage Subscriber:\n";
+                     std::cout << "a) Add new subscriber:\n";
+                     std::cout << "b) Remove existing subscriber:\n";
+                     std::cout << "c) Promote Subscription:\n";
+                     std::cout << "d) Returning to main menu:\n";
+                     std::cout << "Enter your choice: ";
+                     std::cin >> subChoice;
+
+               switch (subChoice) {
+                        case 'a':
+                           std::cout << "Adding new subscriber...\n";
+                           break;
+                        case 'b':
+                            std::cout << "Removing new Subscriber...\n";
+                            break;
+                        case 'c':
+                             std::cout << "Promote Subscription...\n";
+                             break;
+                        case 'd':
+                             std::cout << "Returning to main menu...\n";
+                             break;
+                        default:
+                             std::cout << "Invalid choice!\n";
+                  }
+=======
     char subChoice;
     std::cout << "Manage Subscriber:\n";
     std::cout << "a) Add new subscriber:\n";
@@ -82,6 +109,7 @@ void manageSubscriber() {
         default:
             std::cout << "Invalid choice!\n";
     }
+>>>>>>> dev
 
 }
 
@@ -90,6 +118,27 @@ void manageSubscriber() {
 
 void manageSubscription() {
     char subChoice;
+<<<<<<< HEAD
+                  std::cout << "Manage subscription:\n";
+                     std::cout << "a) Rent a car:\n";
+                     std::cout << "b) Return a car:\n";
+                     std::cout << "c) Extend the Rental period:\n";
+                     std::cout << "Enter your choice: ";
+                     std::cin >> subChoice;
+                     switch (subChoice) {
+                        case 'a':
+                            std::cout << "Rent Car Successfully...\n";
+                            break;
+                        case 'b':
+                             std::cout << "Returned car Successfully...\n";
+                             break;
+                        case 'c':
+                             std::cout << "Extended the Rental Period...\n";
+                             break;
+                        default:
+                              std::cout << "Invalid choice!\n";
+                     }
+=======
     std::cout << "Manage subscription:\n";
     std::cout << "a) Rent a car:\n";
     std::cout << "b) Return a car:\n";
@@ -109,6 +158,7 @@ void manageSubscription() {
         default:
             std::cout << "Invalid choice!\n";
     }
+>>>>>>> dev
 
 
 
@@ -119,6 +169,38 @@ void manageSubscription() {
 }
 
 void reports() {
+<<<<<<< HEAD
+                         char subChoice;
+                         std::cout << "Reports:\n";
+                         std::cout << "a) See available car list:\n";
+                         std::cout << "b) See cars under rental now:\n";
+                         std::cout << "c) See the subscribers list:\n";
+                         std::cout << "d) See current subscription book:\n";
+                         std::cout << "e) See the Revenue so far:\n";
+                         //std::cout << "Enter your choice: ";
+                         // std::cout << "d) See current subscription book:\n";
+                         std::cout << "Enter your choice: ";
+                         std::cin >> subChoice;
+                         switch (subChoice) {
+                            case 'a':
+                                std::cout << "This is the available car list...\n";
+                                break;
+                            case 'b':
+                                 std::cout << "This is the cars list under rental ...\n";
+                                 break;
+                            case 'c':
+                                 std::cout << "This is the subscribers list...\n";
+                                 break;
+                            case 'd':
+                                 std::cout << "This is the current subscription book...\n";
+                                 break;
+                            case 'e':
+                                 std::cout<<"This is the Revenue so far...\n";
+                                 break;
+                            default:
+                            std::cout << "Invalid choice!\n";
+                        }
+=======
     char subChoice;
     std::cout << "Reports:\n";
     std::cout << "a) See available car list:\n";
@@ -149,8 +231,13 @@ void reports() {
         default:
             std::cout << "Invalid choice!\n";
     }
+>>>>>>> dev
 
 
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> dev

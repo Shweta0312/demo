@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+=======
 #ifndef DEMO_FUNCTIONS_H
 #define DEMO_FUNCTIONS_H
+>>>>>>> dev
 
 #include <vector>
 #include "car.h"
@@ -11,4 +16,8 @@ void manageSubscriber();
 void manageSubscription();
 void reports();
 
+<<<<<<< HEAD
+#endif
+=======
 #endif //DEMO_FUNCTIONS_H
+>>>>>>> dev
