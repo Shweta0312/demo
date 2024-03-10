@@ -6,7 +6,7 @@
 
 int main() {
     std::cout << "----------------------" << std::endl;
-    std::cout << "Company Name : RapidRide Rentals: " << std::endl;
+    std::cout << "Company Name : RapidRentals: " << std::endl;
     std::cout << "----------------------" << std::endl;
     std::vector<Car> cars;
     int choice;
