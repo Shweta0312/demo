@@ -6,7 +6,11 @@
 
 int main() {
     std::cout << "----------------------" << std::endl;
+<<<<<<< HEAD
     std::cout << "Company Name : RapidRide Rentals: " << std::endl;
+=======
+    std::cout << "Company Name : RapidRentals: " << std::endl;
+>>>>>>> dev
     std::cout << "----------------------" << std::endl;
     std::vector<Car> cars;
     int choice;

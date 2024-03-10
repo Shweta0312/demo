@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 #ifndef CAR_H
 #define CAR_H
+=======
+#ifndef DEMO_CAR_H
+#define DEMO_CAR_H
+>>>>>>> dev
 
 #include <string>
 
@@ -11,4 +16,8 @@ public:
     int price;
 };
 
+<<<<<<< HEAD
 #endif
+=======
+#endif //DEMO_CAR_H
+>>>>>>> dev
