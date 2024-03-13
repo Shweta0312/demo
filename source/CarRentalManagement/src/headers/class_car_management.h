@@ -1,9 +1,9 @@
-#ifndef CLASS_CARMANAGEMENT_H
-#define CLASS_CARMANAGEMENT_H
+#ifndef CLASS_CAR_MANAGEMENT_H
+#define CLASS_CAR_MANAGEMENT_H
 
 #include <string>
 
-class Car{
+class Car {
 public:
     std::string brand;
     std::string model;

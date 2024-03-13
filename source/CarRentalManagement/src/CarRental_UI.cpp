@@ -1,30 +1,26 @@
 #include <iostream>
 #include <vector>
-#include <string>
 
-#include "headers/Class_CarManagement.h"
-#include "headers/functions_CarManagement.h"
-
-
-using namespace std;
+#include "headers/class_car_management.h"
+#include "headers/core_functions.h"
 
 
 int main() {
-    cout << "----------------------" << endl;
-    cout << "Company Name : RapidRentals " << endl;
-    cout << "----------------------" << endl;
-    vector<Car> cars;
+    std::cout << "----------------------" << std::endl;
+    std::cout << "Company Name : RapidRentals " << std::endl;
+    std::cout << "----------------------" << std::endl;
+    std::vector<Car> cars;
     int choice;
 
     while (true) {
-        cout << "Main Menu:\n";
-        cout << "1. Manage Car\n";
-        cout << "2. Manage Subscriber\n";
-        cout << "3. Manage Subscription\n";
-        cout << "4. Reports\n";
-        cout << "5. Exit\n";
-        cout << "Enter your choice: ";
-        cin >> choice;
+        std::cout << "Main Menu:\n";
+        std::cout << "1. Manage Car\n";
+        std::cout << "2. Manage Subscriber\n";
+        std::cout << "3. Manage Subscription\n";
+        std::cout << "4. Reports\n";
+        std::cout << "5. Exit\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
 
         switch (choice) {
             case 1:
@@ -34,16 +30,16 @@ int main() {
                 manageSubscriber();
                 break;
             case 3:
-                manageSubscription();
+                manageSubscription(cars);
                 break;
             case 4:
                 reports();
                 break;
             case 5:
-                cout << "Exiting program...\n";
+                std::cout << "Exiting program...\n";
                 return 0;
             default:
-                cout << "Invalid choice!\n";
+                std::cout << "Invalid choice!\n";
         }
     }
 
