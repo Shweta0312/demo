@@ -11,7 +11,7 @@
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
-      <config projectName="Project" targetName="Cars_rental_management_system" />
+      <config projectName="Cars_rental_management_system" targetName="Cars_rental_management_system" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -20,7 +20,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f112815a-12f4-4eee-b274-eff2363e54f0" name="Changes" comment="Update: Merge" />
+    <list default="true" id="f112815a-12f4-4eee-b274-eff2363e54f0" name="Changes" comment="Update: Merge">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/CarRentalManagement/src/CarRental_UI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/source/CarRentalManagement/src/CarRental_UI.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/CarRentalManagement/src/functions_CarManagement.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/source/CarRentalManagement/src/functions_CarManagement.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/CarRentalManagement/src/headers/subscribers.h" beforeDir="false" afterPath="$PROJECT_DIR$/source/CarRentalManagement/src/headers/subscribers.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/CarRentalManagement/src/headers/subscription.h" beforeDir="false" afterPath="$PROJECT_DIR$/source/CarRentalManagement/src/headers/subscription.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/CarRentalManagement/src/manage_subscriber.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/source/CarRentalManagement/src/manage_subscriber.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/CarRentalManagement/src/manage_subscription.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/source/CarRentalManagement/src/manage_subscription.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/CarRentalManagement/src/reports.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/source/CarRentalManagement/src/reports.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,23 +46,23 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="Integration" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
     {
-      "state": "CLOSED",
-      "assignee": "Nihaal15"
+      &quot;state&quot;: &quot;CLOSED&quot;,
+      &quot;assignee&quot;: &quot;Nihaal15&quot;
     }
   ],
-  "lastFilter": {
-    "state": "CLOSED",
-    "assignee": "Nihaal15"
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;CLOSED&quot;,
+    &quot;assignee&quot;: &quot;Nihaal15&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -77,25 +87,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "Integration",
-    "last_opened_file_path": "C:/Users/Nihaal/CLionProjects/Cars-rental-management-system/CMakeLists.txt",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "structure.view.defaults.are.configured": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Integration&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Nihaal/CLionProjects/Cars-rental-management-system/CMakeLists.txt&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Nihaal\CLionProjects\Cars-rental-management-system\source\CarRentalManagement\src\headers" />
@@ -104,9 +114,14 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="CMake" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Cars_rental_management_system" TARGET_NAME="Cars_rental_management_system" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Cars_rental_management_system" RUN_TARGET_NAME="Cars_rental_management_system">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -119,6 +134,7 @@
       <option name="presentableId" value="Default" />
       <updated>1710316131109</updated>
       <workItem from="1710316132585" duration="10748000" />
+      <workItem from="1710329493456" duration="642000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored">
       <option name="closed" value="true" />
@@ -144,7 +160,23 @@
       <option name="project" value="LOCAL" />
       <updated>1710328418251</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update: Merge">
+      <option name="closed" value="true" />
+      <created>1710328438073</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710328438073</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Update: Merge">
+      <option name="closed" value="true" />
+      <created>1710329367230</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1710329367230</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

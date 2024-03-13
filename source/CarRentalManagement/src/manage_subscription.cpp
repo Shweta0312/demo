@@ -13,6 +13,7 @@ std::vector<Car> rentedCars(std::vector<Car> &cars, std::vector<Car> &rentedCar,
     obj.model = cars[choice - 1].model;
     obj.registrationNumber = cars[choice - 1].registrationNumber;
     rentedCar.push_back(obj);
+    return rentedCar;
 }
 
 void displayCars(const std::vector<Car> &cars) {
@@ -24,7 +25,7 @@ void displayCars(const std::vector<Car> &cars) {
                   << car.registrationNumber << "\nPrice:" << car.price << std::endl;
         i++;
     }
-};
+}
 
 void displayRentedCar(const std::vector<Car> &rentedCar) {
     std::cout << "List of Cars:" << std::endl;
@@ -35,7 +36,7 @@ void displayRentedCar(const std::vector<Car> &rentedCar) {
                   << car.registrationNumber << std::endl;
         i++;
     }
-};
+}
 
 void displayBill(const std::vector<int> &amount) {
     std::cout << "List of Cars:" << std::endl;
@@ -45,7 +46,7 @@ void displayBill(const std::vector<int> &amount) {
         std::cout << i << "\nBill: " << car << std::endl;
         i++;
     }
-};
+}
 
 void
 extendRental(std::vector<Car> &cars, std::vector<int> &amount, const std::string &brandName, const std::string &num) {
@@ -87,7 +88,7 @@ extendRental(std::vector<Car> &cars, std::vector<int> &amount, const std::string
     } while (_name == "yes");
 }
 
-void returnCar(std::vector<Car> &cars, std::vector<int> &amount, std::string brandName, std::string regNum) {
+void returnCar(std::vector<Car> &cars, std::vector<int> &amount, const std::string& brandName, const std::string& regNum) {
     int flag;
     std::string choice, _choice;
     do {
@@ -121,7 +122,7 @@ void returnCar(std::vector<Car> &cars, std::vector<int> &amount, std::string bra
             std::cin >> _choice;
         }
     } while (_choice == "yes");
-};
+}
 
 void
 rentCar(std::vector<Car> &cars, std::vector<Car> &rentedCar, std::vector<int> &amount, std::string subscriberLevel) {

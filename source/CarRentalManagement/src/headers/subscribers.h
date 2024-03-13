@@ -21,20 +21,20 @@ private:
     double discount;
 
 public:
-    Subscriber(std::string n, std::string i, SubscriptionLevel l, int max, double disc)
-            : name(std::move(n)), id(std::move(i)), level(l), maxCars(max), discount(disc) {}
+    Subscriber(std::string  n, std::string i, SubscriptionLevel l, int max, double disc);
 
-    static std::string getName();
+    std::string getName() const;
 
     std::string getID();
 
-    static SubscriptionLevel getLevel();
+    SubscriptionLevel getLevel() const;
 
     int getMaxCars() const;
 
     double getDiscount() const;
 
     void setLevel(SubscriptionLevel newLevel);
+
 };
 
 class CarRentalSystem {

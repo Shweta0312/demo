@@ -4,7 +4,7 @@
 #include "headers/class_car_management.h"
 #include "headers/subscribers.h"
 
-void displayCars(const std::vector<Car> &cars);
+
 
 void displayRentedCars(const std::vector<Car> &RentedCars);
 

@@ -1,7 +1,11 @@
 #include "headers/subscribers.h"
 #include <string>
+#include <utility>
 
-std::string Subscriber::getName() {
+Subscriber::Subscriber(std::string  n, std::string i, SubscriptionLevel l, int max, double disc)
+        : name(std::move(n)), id(std::move(i)), level(l), maxCars(max), discount(disc) {}
+
+std::string Subscriber::getName() const {
     return name;
 }
 
@@ -9,7 +13,7 @@ std::string Subscriber::getID() {
     return id;
 }
 
-SubscriptionLevel Subscriber::getLevel() {
+SubscriptionLevel Subscriber::getLevel() const {
     return level;
 }
 

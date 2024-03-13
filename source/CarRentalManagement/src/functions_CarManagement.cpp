@@ -75,7 +75,6 @@ void manageSubscriber() {
         }
         case 'b': {
             std::string id;
-            SubscriptionLevel level;
             std::cout << "Removing new Subscriber...\n";
             std::cout << "Enter subscriber ID to remove: ";
             std::cin >> id;
@@ -158,7 +157,7 @@ void reports(std::vector<Car> &cars) {
         case 'c':
             std::cout << "This is the subscribers list...\n";
             // TODO: Implement displaySubscribers function, handle getSubscribers
-            displaySubscribers(Subscriber::getSubscribers());
+//            displaySubscribers(Subscriber::getSubscribers());
             break;
         case 'd':
             std::cout << "This is the current subscription book...\n";
@@ -168,7 +167,7 @@ void reports(std::vector<Car> &cars) {
         case 'e':
             std::cout << "This is the Revenue so far...\n";
             // TODO: Implement displayRevenue function, handle amount
-            displayRevenue(amount);
+//            displayRevenue(amount);
             break;
         default:
             std::cout << "Invalid choice!\n";
