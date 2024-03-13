@@ -42,11 +42,11 @@ private:
     static std::vector<Subscriber> subscribers;
 
 public:
-    static void addSubscriber(const std::string& name, const std::string& id, SubscriptionLevel level);
+    static void addSubscriber(const std::string &name, const std::string &id, SubscriptionLevel level);
 
-    static void removeSubscriberByID(const std::string& id);
+    static void removeSubscriberByID(const std::string &id);
 
-    static void promoteSubscriber(const std::string& id, int newLevel);
+    static void promoteSubscriber(const std::string &id, int newLevel);
 
     static std::string levelToString(SubscriptionLevel level);
 };
