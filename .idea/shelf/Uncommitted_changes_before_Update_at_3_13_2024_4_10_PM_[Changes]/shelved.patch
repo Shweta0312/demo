@@ -1,0 +1,1875 @@
+Index: source/CarRentalManagement/src/report_display.cpp
+===================================================================
+diff --git a/source/CarRentalManagement/src/report_display.cpp b/source/CarRentalManagement/src/report_display.cpp
+deleted file mode 100644
+--- a/source/CarRentalManagement/src/report_display.cpp	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
++++ /dev/null	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
+@@ -1,35 +0,0 @@
+-#include <iostream>
+-#include <vector>
+-#include <string>
+-using namespace std;
+-
+-void displayCars(const vector<Car>& cars) {
+-    cout << "List of Cars:" << endl;
+-    for (const auto& car : cars) {
+-        cout << "Brand: " << car.brand << ", Model: " << car.model << ", Registration Number: " << car.registrationNumber << endl;
+-    }
+-}
+-
+-void displayRentedCars(const vector<Car>& RentedCars){
+-    cout << "List of Rented Cars:" << endl;
+-    for (const auto& car : RentedCars) {
+-        cout << "Brand: " << car.brand << ", Model: " << car.model << ", Registration Number: " << car.registrationNumber << endl;
+-    }
+-}
+-
+-void displaySubscribers(const vector<Subscriber> subscribers){
+-    cout << "List of Subscribers:" << endl;
+-    for (const auto& Subscriber: subscribers) {
+-        cout << "Name " <<Subscriber::getName() << ", Subscription level    : " << Subscriber::getLevel() << endl;
+-    }
+-}
+-
+-void displayRevenue(const vector<Car>& amount    ){
+-    int sum_total=0;
+-    cout << "The total revenue" << endl;
+-    for (const auto& car : RentedCars) {
+-       sum_total+=car.revenue;
+-    }
+-    cout<<sum_total<<endl;
+-}
+-
+Index: source/CarRentalManagement/SubscriptionManagement.cpp
+===================================================================
+diff --git a/source/CarRentalManagement/SubscriptionManagement.cpp b/source/CarRentalManagement/SubscriptionManagement.cpp
+deleted file mode 100644
+--- a/source/CarRentalManagement/SubscriptionManagement.cpp	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
++++ /dev/null	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
+@@ -1,261 +0,0 @@
+-void bill(vector<int> &amount,int tot)
+-{
+-    amount.push_back(tot);
+-}
+-
+-void rentedCars(vector<Car> &cars,vector<Car> &rentedCar,int choice)
+-    {
+-        Car obj;
+-        obj.brand=cars[choice-1].brand;
+-        obj.model=cars[choice-1].model;
+-        obj.registrationNumber=cars[choice-1].registrationNumber;
+-        rentedCar.push_back(obj);
+-    }
+-
+-void displayCars(const vector<Car>& cars) 
+-{
+-
+-        cout << "List of Cars:" << endl;
+-        int i=1;
+-
+-        for (const auto& car : cars) {
+-            cout <<i<<" " << "Brand: " << car.brand << ", Model: " << car.model << ", Registration Number: " << car.registrationNumber<<"Price:"<<car.price<<endl;
+-            i++;
+-        }
+- }
+-
+- void displayRentedCar(const vector<Car>& rentedCar) 
+-    {
+-
+-        cout << "List of Cars:" << endl;
+-        int i=1;
+-
+-        for (const auto& car : rentedCar) {
+-            cout <<i<<" " << "Brand: " << car.brand << ", Model: " << car.model << ", Registration Number: " << car.registrationNumber<<endl;
+-            i++;
+-        }
+-    }
+-
+-void displayBill(const vector<int>& amount) {
+-
+-        cout << "List of Cars:" << endl;
+-        int i=1;
+-
+-        for (const auto& car : amount) {
+-            cout <<i<<" " << "Bill: " << car<<endl;
+-            i++;
+-        }
+-    }
+-
+-void func(vector<Car> &cars,int choice)
+-    {
+-        cout<<"\t\t Car rented Succesfully"<<endl;
+-        cout<<"\t\t-----------------------------"<<endl;
+-        cout<<"\t\t Brand:"<<cars[choice-1].brand<<endl;
+-        cout<<"\t\t Model:"<<cars[choice-1].model<<endl;
+-        cout<<"\t\t Registration No:"<<cars[choice-1].registrationNumber<<endl;
+-        cout<<"\t\t Price:"<<cars[choice-1].price<<endl;
+-        cout<<"\t\t-----------------------------"<<endl;
+-        cout<<"\t\t Thank You for choosing our sytsem"<<endl;
+-        cout<<"\t\t-----------------------------"<<endl;
+-    }
+-
+- void extendRental(vector<Car> &cars,vector<int> &amount,string brandName,string num)
+-    {
+-        int flag;
+-        int day;
+-        string name,_name;
+-        do
+-        {
+-            int i=0;
+-            for (const auto& car : cars)
+-            {
+-                if((car.registrationNumber==num) && (car.brand==brandName))
+-                {
+-                    flag=1;
+-                    break;
+-                }
+-                else
+-                {
+-                    flag=0;
+-                }
+-                i++;
+-            }
+-            if(flag==1)
+-            {
+-                cout<<"How many days you want to extend the rental period?"<<endl;
+-                cin>>day;
+-                cout<<"You have to pay:"<<day*cars[i].price<<endl;
+-                cout<<"Have you paid the bill?(yes/no)"<<endl;
+-                cin>>name;
+-                do
+-                {
+-                    if((name=="yes")||(name=="y"))
+-                    {
+-                        bill(amount,day*cars[i].price);
+-                        cout<<"Thank You.Have a nice day!";
+-                        break;
+-                    }
+-                    else
+-                    {
+-                        cout<<"Please pay the bill."<<endl;
+-                        cout<<"Have you paid the bill?(y/n)"<<endl;
+-                        cin>>name;
+-                    }
+-                }while(name=="y");
+-            }
+-            else
+-            {
+-                cout<<"Invalid credentials,you want to try again?(yes/no)"<<endl;
+-                cin>>_name;
+-            }
+-        }while(_name=="yes");
+-    }
+-    
+-
+-    void returnCar(vector<Car> &cars,vector<int> &amount,string brandName,string regNum)
+-    {
+-        int flag;
+-        string choice,_choice;
+-        do{
+-            cout<<"Do you want to return?(yes/no/exit)";
+-            cin>>choice;
+-            if(choice=="yes")
+-            {
+-                for (const auto& car : cars)
+-                {
+-                    if((car.registrationNumber==regNum) && (car.brand==brandName))
+-                    {
+-                        flag=1;
+-                        break;
+-                    }
+-                    else
+-                    {
+-                        flag=0;
+-                    }
+-                }
+-                if(flag==1)
+-                {
+-                    cout<<"Thank you for returning the car."<<endl;
+-                }
+-                else
+-                {
+-                    cout<<"The given credentials are not valid to return the car,you want to try again?(yes/no)"<<endl;
+-                    cin>>_choice;
+-                    if(_choice=="no")
+-                    {
+-                        cout<<"Thank you for using our system."<<endl;
+-                    }
+-                }
+-                
+-                
+-            }
+-            else if(choice=="no")
+-            {
+-                extendRental(cars,amount,brandName,regNum);
+-            }
+-            else
+-            {
+-                cout<<"Invalid input,you wanna try again?(yes/no)"<<endl;
+-                cin>>_choice;
+-            }
+-        }while(_choice=="yes");
+-}
+-
+-
+-void rentCar(vector<Car> &cars,vector<Car> &rentedCar,vector<int> &amount,string subscriberLevel)
+-    	{
+-        	int day,choice;
+-        	string decide,ans,option;
+-        	        displayCars(cars);
+-        	        cout<<"Enter your choice:"<<endl;
+-        		    cin>>choice;
+-        			cout<<"How many days you want to rent the  car?";
+-        			cin>>day;
+-        			cout<<"Are you sure you want to rent this car (yes/no/exit)"<<endl;
+-        			cin>>decide;
+-        			if(decide=="yes"||decide=="Yes")
+-        			{
+-        			  func(cars,choice);
+-        			  rentedCars(cars,rentedCar,choice);
+-        			  cout<<"You have to pay:"<<day*cars[choice-1].price<<endl;
+-            				cout<<"Have you paid the bill?(yes/no)"<<endl;
+-            				cin>>ans;
+-            				if(ans=="yes")
+-            				{
+-            				    bill(amount,day*cars[choice-1].price);
+-            				    cout<<"Thanks for using our system."<<endl;
+-            				}
+-            				else
+-            				{
+-            				    cout<<"Please pay the bill."<<endl;
+-            				}
+-        			}
+-        			else if(decide=="no"||decide=="No")
+-        			{
+-        			    displayCars(cars);
+-        	    		cout<<"Choose your option"<<endl;
+-        	    		cin>>choice;
+-        	    		cout<<"How many days you want to rent the  car?";
+-            			cin>>day;
+-        			    func(cars,choice);
+-            			rentedCars(cars,rentedCar,choice);
+-            			cout<<"You have to pay:"<<day*cars[choice-1].price<<endl;
+-            			cout<<"Have you paid the bill?(yes/no)"<<endl;
+-            			cin>>ans;
+-            			if(ans=="yes")
+-            			{
+-            				bill(amount,day*cars[choice-1].price);
+-            				cout<<"Thanks for using our system."<<endl;
+-            			}
+-            			else
+-            			{
+-            				cout<<"Please pay the bill."<<endl;
+-            			}
+-        			    
+-        			}
+-        			else 
+-        			{
+-        	    	    cout<<"\t\t Thank you for using our system"<<endl;
+-        	    		cout<<"\t\t-----------------------------"<<endl;
+-
+-        			}
+-        			if((decide=="yes")||(decide=="no"))
+-        			{
+-        			cout<<"Do you want to rent another car:(yes/no)";
+-        			cin>>option;
+-        			if(option=="yes")
+-        			{
+-        			      if(subscriberLevel=="Silver")
+-        			      {
+-        			          cout<<"Please upgrade your subscription to gold or platinum to rent another car."<<endl;
+-        			      }
+-        			      else if(subscriberLevel=="Gold")
+-        			      {
+-        			          cout<<"You can rent one more car.Do you want to?(yes/no)"<<endl;
+-        			          cin>>ans;
+-        			            if(ans=="yes")
+-        			            {
+-        			                rentCar(cars,rentedCar,amount,subscriberLevel);
+-        			            }
+-        			            else
+-        			            {
+-        			                cout<<"Thank you for renting the car."<<endl;
+-        			            }
+-        			        }
+-        			      else
+-        			      {
+-        			          cout<<"You can rent two more cars.Do you want to?"<<endl;
+-        			          cin>>ans;
+-        			            if(ans=="yes")
+-        			            {
+-        			                rentCar(cars,rentedCar,amount,subscriberLevel);
+-        			            }
+-        			            else
+-        			            {
+-        			                cout<<"Thank you for renting the car."<<endl;
+-        			            }
+-        			       }
+-        			   }
+-        		}
+-        }
+Index: source/CarRentalManagement/src/SubscriptionManagement.cpp
+===================================================================
+diff --git a/source/CarRentalManagement/src/SubscriptionManagement.cpp b/source/CarRentalManagement/src/SubscriptionManagement.cpp
+deleted file mode 100644
+--- a/source/CarRentalManagement/src/SubscriptionManagement.cpp	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
++++ /dev/null	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
+@@ -1,201 +0,0 @@
+-
+-
+- void extendRental(vector<Car> &cars,vector<int> &amount,string brandName,string num)
+-    {
+-        int flag;
+-        int day;
+-        string name,_name;
+-        do
+-        {
+-            int i=0;
+-            for (const auto& car : cars)
+-            {
+-                if((car.registrationNumber==num) && (car.brand==brandName))
+-                {
+-                    flag=1;
+-                    break;
+-                }
+-                else
+-                {
+-                    flag=0;
+-                }
+-                i++;
+-            }
+-            if(flag==1)
+-            {
+-                cout<<"How many days you want to extend the rental period?"<<endl;
+-                cin>>day;
+-                cout<<"You have to pay:"<<day*cars[i].price<<endl;
+-                cout<<"Have you paid the bill?(yes/no)"<<endl;
+-                cin>>name;
+-                do
+-                {
+-                    if((name=="yes")||(name=="y"))
+-                    {
+-                        bill(amount,day*cars[i].price);
+-                        cout<<"Thank You.Have a nice day!";
+-                        break;
+-                    }
+-                    else
+-                    {
+-                        cout<<"Please pay the bill."<<endl;
+-                        cout<<"Have you paid the bill?(y/n)"<<endl;
+-                        cin>>name;
+-                    }
+-                }while(name=="y");
+-            }
+-            else
+-            {
+-                cout<<"Invalid credentials,you want to try again?(yes/no)"<<endl;
+-                cin>>_name;
+-            }
+-        }while(_name=="yes");
+-    }
+-    
+-
+-    void returnCar(vector<Car> &cars,vector<int> &amount,string brandName,string regNum)
+-    {
+-        int flag;
+-        string choice,_choice;
+-        do{
+-            cout<<"Do you want to return?(yes/no/exit)";
+-            cin>>choice;
+-            if(choice=="yes")
+-            {
+-                for (const auto& car : cars)
+-                {
+-                    if((car.registrationNumber==regNum) && (car.brand==brandName))
+-                    {
+-                        flag=1;
+-                        break;
+-                    }
+-                    else
+-                    {
+-                        flag=0;
+-                    }
+-                }
+-                if(flag==1)
+-                {
+-                    cout<<"Thank you for returning the car."<<endl;
+-                }
+-                else
+-                {
+-                    cout<<"The given credentials are not valid to return the car,you want to try again?(yes/no)"<<endl;
+-                    cin>>_choice;
+-                    if(_choice=="no")
+-                    {
+-                        cout<<"Thank you for using our system."<<endl;
+-                    }
+-                }
+-                
+-                
+-            }
+-            else if(choice=="no")
+-            {
+-                extendRental(cars,amount,brandName,regNum);
+-            }
+-            else
+-            {
+-                cout<<"Invalid input,you wanna try again?(yes/no)"<<endl;
+-                cin>>_choice;
+-            }
+-        }while(_choice=="yes");
+-}
+-
+-
+-void rentCar(vector<Car> &cars,vector<Car> &rentedCar,vector<int> &amount,string subscriberLevel)
+-    	{
+-        	int day,choice;
+-        	string decide,ans,option;
+-        	        displayCars(cars);
+-        	        cout<<"Enter your choice:"<<endl;
+-        		    cin>>choice;
+-        			cout<<"How many days you want to rent the  car?";
+-        			cin>>day;
+-        			cout<<"Are you sure you want to rent this car (yes/no/exit)"<<endl;
+-        			cin>>decide;
+-        			if(decide=="yes"||decide=="Yes")
+-        			{
+-        			  func(cars,choice);
+-        			  rentedCars(cars,rentedCar,choice);
+-        			  cout<<"You have to pay:"<<day*cars[choice-1].price<<endl;
+-            				cout<<"Have you paid the bill?(yes/no)"<<endl;
+-            				cin>>ans;
+-            				if(ans=="yes")
+-            				{
+-            				    bill(amount,day*cars[choice-1].price);
+-            				    cout<<"Thanks for using our system."<<endl;
+-            				}
+-            				else
+-            				{
+-            				    cout<<"Please pay the bill."<<endl;
+-            				}
+-        			}
+-        			else if(decide=="no"||decide=="No")
+-        			{
+-        			    displayCars(cars);
+-        	    		cout<<"Choose your option"<<endl;
+-        	    		cin>>choice;
+-        	    		cout<<"How many days you want to rent the  car?";
+-            			cin>>day;
+-        			    func(cars,choice);
+-            			rentedCars(cars,rentedCar,choice);
+-            			cout<<"You have to pay:"<<day*cars[choice-1].price<<endl;
+-            			cout<<"Have you paid the bill?(yes/no)"<<endl;
+-            			cin>>ans;
+-            			if(ans=="yes")
+-            			{
+-            				bill(amount,day*cars[choice-1].price);
+-            				cout<<"Thanks for using our system."<<endl;
+-            			}
+-            			else
+-            			{
+-            				cout<<"Please pay the bill."<<endl;
+-            			}
+-        			    
+-        			}
+-        			else 
+-        			{
+-        	    	    cout<<"\t\t Thank you for using our system"<<endl;
+-        	    		cout<<"\t\t-----------------------------"<<endl;
+-
+-        			}
+-        			if((decide=="yes")||(decide=="no"))
+-        			{
+-        			cout<<"Do you want to rent another car:(yes/no)";
+-        			cin>>option;
+-        			if(option=="yes")
+-        			{
+-        			      if(subscriberLevel=="Silver")
+-        			      {
+-        			          cout<<"Please upgrade your subscription to gold or platinum to rent another car."<<endl;
+-        			      }
+-        			      else if(subscriberLevel=="Gold")
+-        			      {
+-        			          cout<<"You can rent one more car.Do you want to?(yes/no)"<<endl;
+-        			          cin>>ans;
+-        			            if(ans=="yes")
+-        			            {
+-        			                rentCar(cars,rentedCar,amount,subscriberLevel);
+-        			            }
+-        			            else
+-        			            {
+-        			                cout<<"Thank you for renting the car."<<endl;
+-        			            }
+-        			        }
+-        			      else
+-        			      {
+-        			          cout<<"You can rent two more cars.Do you want to?"<<endl;
+-        			          cin>>ans;
+-        			            if(ans=="yes")
+-        			            {
+-        			                rentCar(cars,rentedCar,amount,subscriberLevel);
+-        			            }
+-        			            else
+-        			            {
+-        			                cout<<"Thank you for renting the car."<<endl;
+-        			            }
+-        			       }
+-        			   }
+-        		}
+-        }
+\ No newline at end of file
+Index: source/CarRentalManagement/src/report_display.h
+===================================================================
+diff --git a/source/CarRentalManagement/src/report_display.h b/source/CarRentalManagement/src/report_display.h
+deleted file mode 100644
+--- a/source/CarRentalManagement/src/report_display.h	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
++++ /dev/null	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
+@@ -1,7 +0,0 @@
+-#include <vector>
+-
+-void displayCars(const vector<Car>& cars);
+-void displayRentedCars(const vector<Car>& RentedCars);
+-void displaySubscribers(const vector<Subscriber> subscribers);
+-void displayCurrentSubscription(const vector<Car>& RentedCars);
+-void displayRevenue(const vector<Car>& RentedCars);
+\ No newline at end of file
+Index: source/CarRentalManagement/src/subscribersmanagement.cpp
+===================================================================
+diff --git a/source/CarRentalManagement/src/subscribersmanagement.cpp b/source/CarRentalManagement/src/subscribersmanagement.cpp
+deleted file mode 100644
+--- a/source/CarRentalManagement/src/subscribersmanagement.cpp	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
++++ /dev/null	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
+@@ -1,167 +0,0 @@
+-#include "subscribersmanagement.h"
+-
+-Subscriber::Subscriber(std::string n, std::string i, SubscriptionLevel l, int max, double disc)
+-    : name(n), id(i), level(l), maxCars(max), discount(disc) {}
+-
+-std::string Subscriber::getName() const {
+-    return name;
+-}
+-
+-std::string Subscriber::getID() const {
+-    return id;
+-}
+-
+-SubscriptionLevel Subscriber::getLevel() const {
+-    return level;
+-}
+-
+-int Subscriber::getMaxCars() const {
+-    return maxCars;
+-}
+-
+-double Subscriber::getDiscount() const {
+-    return discount;
+-}
+-
+-void Subscriber::setLevel(SubscriptionLevel newLevel) {
+-    level = newLevel;
+-}
+-
+-void CarRentalSystem::addSubscriber(std::string name, std::string id, SubscriptionLevel level) {
+-    int maxCars;
+-    double discount;
+-
+-    switch (level) {
+-    case SubscriptionLevel::Silver:
+-        maxCars = 1;
+-        discount = 0.0;
+-        break;
+-    case SubscriptionLevel::Gold:
+-        maxCars = 2;
+-        discount = 0.10;
+-        break;
+-    case SubscriptionLevel::Platinum:
+-        maxCars = 3;
+-        discount = 0.20;
+-        break;
+-    }
+-
+-    subscribers.push_back(Subscriber(name, id, level, maxCars, discount));
+-
+-    std::cout << "Subscriber added successfully:" << std::endl;
+-    std::cout << "Name: " << name << std::endl;
+-    std::cout << "ID: " << id << std::endl;
+-    std::cout << "Subscription Level: " << levelToString(level) << std::endl;
+-}
+-
+-void CarRentalSystem::removeSubscriberByID(std::string id) {
+-    for (auto it = subscribers.begin(); it != subscribers.end(); ++it) {
+-        if (it->getID() == id) {
+-            std::cout << "Subscriber removed successfully:" << std::endl;
+-            std::cout << "Name: " << it->getName() << std::endl;
+-            std::cout << "ID: " << it->getID() << std::endl;
+-            std::cout << "Subscription Level: " << levelToString(it->getLevel()) << std::endl;
+-            subscribers.erase(it);
+-            return;
+-        }
+-    }
+-    std::cout << "Subscriber with ID " << id << " not found." << std::endl;
+-}
+-
+-void CarRentalSystem::promoteSubscriber(std::string id, int newLevel) {
+-    for (auto &subscriber : subscribers) {
+-        if (subscriber.getID() == id) {
+-            SubscriptionLevel currentLevel = subscriber.getLevel();
+-            SubscriptionLevel level;
+-            switch (newLevel) {
+-            case 0:
+-                level = SubscriptionLevel::Silver;
+-                break;
+-            case 1:
+-                level = SubscriptionLevel::Gold;
+-                break;
+-            case 2:
+-                level = SubscriptionLevel::Platinum;
+-                break;
+-            default:
+-                std::cout << "Invalid subscription level." << std::endl;
+-                return;
+-            }
+-
+-            if (currentLevel == level) {
+-                std::cout << "Subscriber with ID " << id << " is already at " << levelToString(level) << " level." << std::endl;
+-                return;
+-            }
+-
+-            subscriber.setLevel(level);
+-            std::cout << "Subscriber with ID " << id << " promoted to " << levelToString(level) << " level." << std::endl;
+-            return;
+-        }
+-    }
+-    std::cout << "Subscriber with ID " << id << " not found." << std::endl;
+-}
+-
+-std::string CarRentalSystem::levelToString(SubscriptionLevel level) {
+-    switch (level) {
+-    case SubscriptionLevel::Silver:
+-        return "Silver";
+-    case SubscriptionLevel::Gold:
+-        return "Gold";
+-    case SubscriptionLevel::Platinum:
+-        return "Platinum";
+-    }
+-    return ""; // This should never be reached, just to satisfy the compiler.
+-}
+-
+-void handleMenuChoice(CarRentalSystem& rentalSystem, int choice) {
+-    if (choice == 1) {
+-        std::string name, id;
+-        int level;
+-
+-        std::cout << "Enter subscriber name: ";
+-        std::cin >> name;
+-        std::cout << "Enter subscriber ID: ";
+-        std::cin >> id;
+-        std::cout << "Enter subscription level (0 for Silver, 1 for Gold, 2 for Platinum): ";
+-        std::cin >> level;
+-
+-        rentalSystem.addSubscriber(name, id, static_cast<SubscriptionLevel>(level));
+-    } else if (choice == 2) {
+-        std::string id;
+-        std::cout << "Enter subscriber ID to remove: ";
+-        std::cin >> id;
+-        rentalSystem.removeSubscriberByID(id);
+-    } else if (choice == 3) {
+-        std::string id;
+-        int level;
+-        std::cout << "Enter subscriber ID to promote: ";
+-        std::cin >> id;
+-        std::cout << "Enter new subscription level (0 for Silver, 1 for Gold, 2 for Platinum): ";
+-        std::cin >> level;
+-        rentalSystem.promoteSubscriber(id, level);
+-    } else if (choice == 4) {
+-        std::cout << "Exiting..." << std::endl;
+-    } else {
+-        std::cout << "Invalid choice. Please try again." << std::endl;
+-    }
+-}
+-
+-int main() {
+-    CarRentalSystem rentalSystem;
+-
+-    while (true) {
+-        std::cout << "Menu:" << std::endl;
+-        std::cout << "1. Add a subscriber" << std::endl;
+-        std::cout << "2. Remove a subscriber by ID" << std::endl;
+-        std::cout << "3. Promote subscription level" << std::endl;
+-        std::cout << "4. Exit" << std::endl;
+-
+-        int choice;
+-        std::cin >> choice;
+-
+-        if (choice == 4) {
+-            handleMenuChoice(rentalSystem, choice);
+-            break;
+-        } else {
+-            handleMenuChoice(rentalSystem, choice);
+-}     }     return 0; }
+Index: source/CarRentalManagement/src/functions_CarManagement.h
+===================================================================
+diff --git a/source/CarRentalManagement/src/functions_CarManagement.h b/source/CarRentalManagement/src/functions_CarManagement.h
+deleted file mode 100644
+--- a/source/CarRentalManagement/src/functions_CarManagement.h	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
++++ /dev/null	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
+@@ -1,15 +0,0 @@
+-#ifndef FUNCTIONS_CARMANAGEMENT_H
+-#define FUNCTIONS_CARMANAGEMENT_H
+-
+-#include <vector>
+-
+-#include "Class_CarManagement.h"
+-
+-void addCar(std::vector <Car> &cars);
+-void removeCar(std::vector <Car> &carList);
+-void manageCar(std::vector <Car> &cars);
+-void manageSubscriber();
+-void manageSubscription();
+-void reports();
+-
+-#endif
+Index: source/CarRentalManagement/src/subscribersmanagement.h
+===================================================================
+diff --git a/source/CarRentalManagement/src/subscribersmanagement.h b/source/CarRentalManagement/src/subscribersmanagement.h
+deleted file mode 100644
+--- a/source/CarRentalManagement/src/subscribersmanagement.h	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
++++ /dev/null	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
+@@ -1,42 +0,0 @@
+-#ifndef SMS_H // C
+-#define SMS_H
+-#include <iostream>
+-#include <vector>
+-#include <string>
+-
+-enum class SubscriptionLevel {
+-    Silver,
+-    Gold,
+-    Platinum
+-};
+-
+-class Subscriber {
+-private:
+-    std::string name;
+-    std::string id;
+-    SubscriptionLevel level;
+-    int maxCars;
+-    double discount;
+-
+-public:
+-    Subscriber(std::string n, std::string i, SubscriptionLevel l, int max, double disc);
+-    std::string getName() const;
+-    std::string getID() const;
+-    SubscriptionLevel getLevel() const;
+-    int getMaxCars() const;
+-    double getDiscount() const;
+-    void setLevel(SubscriptionLevel newLevel);
+-};
+-
+-class CarRentalSystem {
+-private:
+-    std::vector<Subscriber> subscribers;
+-
+-public:
+-    void addSubscriber(std::string name, std::string id, SubscriptionLevel level);
+-    void removeSubscriberByID(std::string id);
+-    void promoteSubscriber(std::string id, int newLevel);
+-    std::string levelToString(SubscriptionLevel level);
+-};
+-
+-#endif
+Index: source/CarRentalManagement/src/SubscriptionManagementFunctions.cpp
+===================================================================
+diff --git a/source/CarRentalManagement/src/SubscriptionManagementFunctions.cpp b/source/CarRentalManagement/src/SubscriptionManagementFunctions.cpp
+deleted file mode 100644
+--- a/source/CarRentalManagement/src/SubscriptionManagementFunctions.cpp	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
++++ /dev/null	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
+@@ -1,58 +0,0 @@
+-    void bill(vector<int> &amount,int tot)
+-    {
+-    	amount.push_back(tot);
+-    }
+-
+-    void rentedCars(vector<Car> &cars,vector<Car> &rentedCar,int choice)
+-    {
+-        Car obj;
+-        obj.brand=cars[choice-1].brand;
+-        obj.model=cars[choice-1].model;
+-        obj.registrationNumber=cars[choice-1].registrationNumber;
+-        rentedCar.push_back(obj);
+-    }
+-    
+-    void displayCars(const vector<Car>& cars) 
+-    {
+-
+-        cout << "List of Cars:" << endl;
+-        int i=1;
+-
+-        for (const auto& car : cars) {
+-            cout <<i<<" " << "Brand: " << car.brand << ", Model: " << car.model << ", Registration Number: " << car.registrationNumber<<"Price:"<<car.price<<endl;
+-            i++;
+-        }
+-    }
+-    void displayRentedCar(const vector<Car>& rentedCar) 
+-    {
+-
+-        cout << "List of Cars:" << endl;
+-        int i=1;
+-
+-        for (const auto& car : rentedCar) {
+-            cout <<i<<" " << "Brand: " << car.brand << ", Model: " << car.model << ", Registration Number: " << car.registrationNumber<<endl;
+-            i++;
+-        }
+-    }
+-    void displayBill(const vector<int>& amount) {
+-
+-        cout << "List of Cars:" << endl;
+-        int i=1;
+-
+-        for (const auto& car : amount) {
+-            cout <<i<<" " << "Bill: " << car<<endl;
+-            i++;
+-        }
+-    }
+-    void func(vector<Car> &cars,int choice)
+-    {
+-        cout<<"\t\t Car rented Succesfully"<<endl;
+-        cout<<"\t\t-----------------------------"<<endl;
+-        cout<<"\t\t Brand:"<<cars[choice-1].brand<<endl;
+-        cout<<"\t\t Model:"<<cars[choice-1].model<<endl;
+-        cout<<"\t\t Registration No:"<<cars[choice-1].registrationNumber<<endl;
+-        cout<<"\t\t Price:"<<cars[choice-1].price<<endl;
+-        cout<<"\t\t-----------------------------"<<endl;
+-        cout<<"\t\t Thank You for choosing our sytsem"<<endl;
+-        cout<<"\t\t-----------------------------"<<endl;
+-    }
+\ No newline at end of file
+Index: source/CarRentalManagement/src/CarRentalManagement.cpp
+===================================================================
+diff --git a/source/CarRentalManagement/src/CarRentalManagement.cpp b/source/CarRentalManagement/src/CarRentalManagement.cpp
+deleted file mode 100644
+--- a/source/CarRentalManagement/src/CarRentalManagement.cpp	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
++++ /dev/null	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
+@@ -1,15 +0,0 @@
+-//============================================================================
+-// Name        : CarRentalManagement.cpp
+-// Author      : 
+-// Version     :
+-// Copyright   : Your copyright notice
+-// Description : Hello World in C++, Ansi-style
+-//============================================================================
+-
+-#include <iostream>
+-using namespace std;
+-
+-int main() {
+-	cout << "Welcome to car rental management system" << endl; // prints Welcome to car rental management system
+-	return 0;
+-}
+Index: source/CarRentalManagement/src/headers/subscription.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/CarRentalManagement/src/headers/subscription.h b/source/CarRentalManagement/src/headers/subscription.h
+new file mode 100644
+--- /dev/null	(date 1710326405717)
++++ b/source/CarRentalManagement/src/headers/subscription.h	(date 1710326405717)
+@@ -0,0 +1,26 @@
++#ifndef SUBSCRIPTION_H
++#define SUBSCRIPTION_H
++
++#include <vector>
++#include "class_car_management.h"
++
++void bill(std::vector<int> &amount, int tot);
++
++std::vector<Car> rentedCars(std::vector<Car> &cars, std::vector<Car> &rentedCar, int choice);
++
++void displayCars(const std::vector<Car> &cars);
++
++void displayRentedCar(const std::vector<Car> &rentedCar);
++
++void displayBill(const std::vector<int> &amount);
++
++void extendRental(std::vector<Car> &cars, std::vector<int> &amount, const std::string &brandName, const std::string& num);
++
++void returnCar(std::vector<Car> &cars, std::vector<int> &amount, std::string brandName, std::string regNum);
++
++void
++rentCar(std::vector<Car> &cars, std::vector<Car> &rentedCar, std::vector<int> &amount, std::string subscriberLevel);
++
++void receipt(std::vector<Car> &cars, int choice);
++
++#endif
+Index: source/CarRentalManagement/src/headers/subscribers.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/CarRentalManagement/src/headers/subscribers.h b/source/CarRentalManagement/src/headers/subscribers.h
+new file mode 100644
+--- /dev/null	(date 1710325486590)
++++ b/source/CarRentalManagement/src/headers/subscribers.h	(date 1710325486590)
+@@ -0,0 +1,54 @@
++#ifndef SUBSCRIBERS_MANAGEMENT_H
++#define SUBSCRIBERS_MANAGEMENT_H
++
++#include <iostream>
++#include <utility>
++#include <vector>
++#include <string>
++
++enum class SubscriptionLevel {
++    Silver,
++    Gold,
++    Platinum
++};
++
++class Subscriber {
++private:
++    std::string name;
++    std::string id;
++    SubscriptionLevel level;
++    int maxCars;
++    double discount;
++
++public:
++    Subscriber(std::string n, std::string i, SubscriptionLevel l, int max, double disc)
++            : name(std::move(n)), id(std::move(i)), level(l), maxCars(max), discount(disc) {}
++
++    static std::string getName();
++
++    std::string getID();
++
++    static SubscriptionLevel getLevel();
++
++    int getMaxCars() const;
++
++    double getDiscount() const;
++
++    void setLevel(SubscriptionLevel newLevel);
++};
++
++class CarRentalSystem {
++private:
++    static std::vector<Subscriber> subscribers;
++
++public:
++    static void addSubscriber(const std::string& name, const std::string& id, SubscriptionLevel level);
++
++    static void removeSubscriberByID(const std::string& id);
++
++    static void promoteSubscriber(const std::string& id, int newLevel);
++
++    static std::string levelToString(SubscriptionLevel level);
++};
++
++#endif
+Index: source/CarRentalManagement/src/headers/manage_car_functions.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/CarRentalManagement/src/headers/manage_car_functions.h b/source/CarRentalManagement/src/headers/manage_car_functions.h
+new file mode 100644
+--- /dev/null	(date 1710319046791)
++++ b/source/CarRentalManagement/src/headers/manage_car_functions.h	(date 1710319046791)
+@@ -0,0 +1,12 @@
++#ifndef MANAGE_CAR_FUNCTIONS_H
++#define MANAGE_CAR_FUNCTIONS_H
++
++#include <vector>
++
++#include "class_car_management.h"
++
++void addCar(std::vector<Car> &cars);
++
++void removeCar(std::vector<Car> &carList);
++
++#endif
+Index: source/CarRentalManagement/src/manage_subscriber.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/CarRentalManagement/src/manage_subscriber.cpp b/source/CarRentalManagement/src/manage_subscriber.cpp
+new file mode 100644
+--- /dev/null	(date 1710321780545)
++++ b/source/CarRentalManagement/src/manage_subscriber.cpp	(date 1710321780545)
+@@ -0,0 +1,107 @@
++#include "headers/subscribers.h"
++#include <string>
++
++std::string Subscriber::getName() {
++    return name;
++}
++
++std::string Subscriber::getID() {
++    return id;
++}
++
++SubscriptionLevel Subscriber::getLevel() {
++    return level;
++}
++
++int Subscriber::getMaxCars() const {
++    return maxCars;
++}
++
++double Subscriber::getDiscount() const {
++    return discount;
++}
++
++void Subscriber::setLevel(SubscriptionLevel newLevel) {
++    level = newLevel;
++}
++
++void CarRentalSystem::addSubscriber(const std::string &name, const std::string &id, SubscriptionLevel level) {
++    int maxCars;
++    double discount;
++    switch (level) {
++        case SubscriptionLevel::Silver:
++            maxCars = 1;
++            discount = 0.0;
++            break;
++        case SubscriptionLevel::Gold:
++            maxCars = 2;
++            discount = 0.10;
++            break;
++        case SubscriptionLevel::Platinum:
++            maxCars = 3;
++            discount = 0.20;
++            break;
++    }
++
++    subscribers.emplace_back(name, id, level, maxCars, discount);
++}
++
++void CarRentalSystem::removeSubscriberByID(const std::string &id) {
++    for (auto it = subscribers.begin(); it != subscribers.end(); ++it) {
++        if (it->getID() == id) {
++            std::cout << "Subscriber removed successfully:" << std::endl;
++            std::cout << "Name: " << it->getName() << std::endl;
++            std::cout << "ID: " << it->getID() << std::endl;
++            std::cout << "Subscription Level: " << levelToString(it->getLevel()) << std::endl;
++            subscribers.erase(it);
++            return;
++        }
++    }
++    std::cout << "Subscriber with ID " << id << " not found." << std::endl;
++}
++
++void CarRentalSystem::promoteSubscriber(const std::string &id, int newLevel) {
++    for (auto &subscriber: subscribers) {
++        if (subscriber.getID() == id) {
++            SubscriptionLevel currentLevel = subscriber.getLevel();
++            SubscriptionLevel level;
++            switch (newLevel) {
++                case 0:
++                    level = SubscriptionLevel::Silver;
++                    break;
++                case 1:
++                    level = SubscriptionLevel::Gold;
++                    break;
++                case 2:
++                    level = SubscriptionLevel::Platinum;
++                    break;
++                default:
++                    std::cout << "Invalid subscription level." << std::endl;
++                    return;
++            }
++
++            if (currentLevel == level) {
++                std::cout << "Subscriber with ID " << id << " is already at " << levelToString(level) << " level."
++                          << std::endl;
++                return;
++            }
++
++            subscriber.setLevel(level);
++            std::cout << "Subscriber with ID " << id << " promoted to " << levelToString(level) << " level."
++                      << std::endl;
++            return;
++        }
++    }
++    std::cout << "Subscriber with ID " << id << " not found." << std::endl;
++}
++
++std::string CarRentalSystem::levelToString(SubscriptionLevel level) {
++    switch (level) {
++        case SubscriptionLevel::Silver:
++            return "Silver";
++        case SubscriptionLevel::Gold:
++            return "Gold";
++        case SubscriptionLevel::Platinum:
++            return "Platinum";
++    }
++}
+Index: source/CarRentalManagement/src/reports.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/CarRentalManagement/src/reports.cpp b/source/CarRentalManagement/src/reports.cpp
+new file mode 100644
+--- /dev/null	(date 1710326405705)
++++ b/source/CarRentalManagement/src/reports.cpp	(date 1710326405705)
+@@ -0,0 +1,42 @@
++#include "headers/class_car_management.h"
++#include "headers/subscribers.h"
++
++#include <iostream>
++#include <vector>
++#include <string>
++
++void displayCars(const std::vector<Car> &cars) {
++    std::cout << "List of Cars:" << std::endl;
++    for (const auto &car: cars) {
++        std::cout << "Brand: " << car.brand << ", Model: " << car.model << ", Registration Number: "
++                  << car.registrationNumber << std::endl;
++    }
++}
++
++void displayRentedCars(const std::vector<Car> &RentedCars) {
++    std::cout << "List of Rented Cars:" << std::endl;
++    for (const auto &car: RentedCars) {
++        std::cout << "Brand: " << car.brand << ", Model: " << car.model << ", Registration Number: "
++                  << car.registrationNumber << std::endl;
++    }
++}
++
++void displaySubscribers(const std::vector<Subscriber> &subscribers) {
++    std::cout << "List of Subscribers:" << std::endl;
++    for (const auto &subscriber: subscribers) {
++        std::cout << "Name: " << Subscriber::getName() << ", Subscription level: "
++                  << CarRentalSystem::levelToString(Subscriber::getLevel())
++                  << std::endl;
++    }
++}
++
++
++void displayRevenue(const std::vector<Car> &amount) {
++    int sum_total = 0;
++    std::cout << "The total revenue" << std::endl;
++    // TODO: Handle RentedCars
++    for (const auto &car: RentedCars) {
++        sum_total += car.revenue;
++    }
++    std::cout << sum_total << std::endl;
++}
+\ No newline at end of file
+Index: source/CarRentalManagement/src/headers/core_functions.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/CarRentalManagement/src/headers/core_functions.h b/source/CarRentalManagement/src/headers/core_functions.h
+new file mode 100644
+--- /dev/null	(date 1710326405724)
++++ b/source/CarRentalManagement/src/headers/core_functions.h	(date 1710326405724)
+@@ -0,0 +1,15 @@
++#ifndef CORE_FUNCTIONS_H
++#define CORE_FUNCTIONS_H
++
++#include <vector>
++
++
++void manageCar(std::vector<Car> &cars);
++
++void manageSubscriber();
++
++void manageSubscription(std::vector<Car> &cars);
++
++void reports(std::vector<Car> &cars);
++
++#endif
+Index: source/CarRentalManagement/src/functions_CarManagement.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include <iostream>\r\n#include \"headers/functions_CarManagement.h\"\r\n\r\nvoid addCar(std::vector<Car> &cars) {\r\n    Car newCar;\r\n    std::cout << \"Enter Brand: \";\r\n    std::cin >> newCar.brand;\r\n    std::cout << \"Enter model: \";\r\n    std::cin >> newCar.model;\r\n    std::cout << \"Enter registrationNumber: \";\r\n    std::cin >> newCar.registrationNumber;\r\n    std::cout<<\"Enter Price :\";\r\n    std::cin>>newCar.price;\r\n\r\n    cars.push_back(newCar);\r\n    std::cout << \"Car added successfully!\" << std::endl;\r\n}\r\n\r\nvoid removeCar(std::vector<Car>& carList) {\r\n    std::string registrationNumber;\r\n    std::cout << \"Enter registration number of the car to remove: \";\r\n    std::cin >> registrationNumber;\r\n    for (auto it = carList.begin(); it != carList.end(); ++it) {\r\n        if (it->registrationNumber == registrationNumber) {\r\n            carList.erase(it);\r\n            std::cout << \"Car removed from rental list.\" << std::endl;\r\n            return;\r\n        }\r\n    }\r\n    std::cout << \"Car with registration number \" << registrationNumber << \" not found in rental list.\" << std::endl;\r\n}\r\n\r\nvoid manageCar(std::vector<Car>& cars) {\r\n    char subChoice;\r\n    std::cout << \"Manage Car:\\n\";\r\n    std::cout << \"a) Add new car\\n\";\r\n    std::cout << \"b) Remove existing car\\n\";\r\n    std::cout << \"c) Return to main menu\\n\";\r\n    std::cout << \"Enter your choice: \";\r\n    std::cin >> subChoice;\r\n\r\n    switch (subChoice) {\r\n        case 'a':\r\n            std::cout << \"Adding new car...\\n\";\r\n            addCar(cars);\r\n            break;\r\n        case 'b':\r\n            std::cout << \"Removing existing car...\\n\";\r\n            removeCar(cars);\r\n            break;\r\n        case 'c':\r\n            std::cout << \"Returning to main menu...\\n\";\r\n            break;\r\n        default:\r\n            std::cout << \"Invalid choice!\\n\";\r\n    }\r\n}\r\n\r\nvoid manageSubscriber() {\r\n                     char subChoice;\r\n                     std::cout << \"Manage Subscriber:\\n\";\r\n                     std::cout << \"a) Add new subscriber:\\n\";\r\n                     std::cout << \"b) Remove existing subscriber:\\n\";\r\n                     std::cout << \"c) Promote Subscription:\\n\";\r\n                     std::cout << \"d) Returning to main menu:\\n\";\r\n                     std::cout << \"Enter your choice: \";\r\n                     std::cin >> subChoice;\r\n\r\n               switch (subChoice) {\r\n                        case 'a':\r\n                           std::cout << \"Adding new subscriber...\\n\";\r\n                           break;\r\n                        case 'b':\r\n                            std::cout << \"Removing new Subscriber...\\n\";\r\n                            break;\r\n                        case 'c':\r\n                             std::cout << \"Promote Subscription...\\n\";\r\n                             break;\r\n                        case 'd':\r\n                             std::cout << \"Returning to main menu...\\n\";\r\n                             break;\r\n                        default:\r\n                             std::cout << \"Invalid choice!\\n\";\r\n                  }\r\n\r\n}\r\n\r\n\r\n\r\n\r\nvoid manageSubscription() {\r\n    char subChoice;\r\n                  std::cout << \"Manage subscription:\\n\";\r\n                     std::cout << \"a) Rent a car:\\n\";\r\n                     std::cout << \"b) Return a car:\\n\";\r\n                     std::cout << \"c) Extend the Rental period:\\n\";\r\n                     std::cout << \"Enter your choice: \";\r\n                     std::cin >> subChoice;\r\n                     switch (subChoice) {\r\n                        case 'a':\r\n                            std::cout << \"Rent Car Successfully...\\n\";\r\n                            break;\r\n                        case 'b':\r\n                             std::cout << \"Returned car Sucessfully...\\n\";\r\n                             break;\r\n                        case 'c':\r\n                             std::cout << \"Extended the Rental Period...\\n\";\r\n                             break;\r\n                        default:\r\n                              std::cout << \"Invalid choice!\\n\";\r\n                     }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n}\r\n\r\nvoid reports() {\r\n                         char subChoice;\r\n                         std::cout << \"Reports:\\n\";\r\n                         std::cout << \"a) See available car list:\\n\";\r\n                         std::cout << \"b) See cars under rental now:\\n\";\r\n                         std::cout << \"c) See the subscribers list:\\n\";\r\n                         std::cout << \"d) See current subscription book:\\n\";\r\n                         std::cout << \"e) See the Revenue so far:\\n\";\r\n                         //std::cout << \"Enter your choice: \";                              \t                                                \t                             \t                                                                                                                                                                                                                             std::cout << \"d) See current subscription book:\\n\";\r\n                         std::cout << \"Enter your choice: \";\r\n                         std::cin >> subChoice;\r\n                         switch (subChoice) {\r\n                            case 'a':\r\n                                std::cout << \"This is the available car list...\\n\";\r\n\r\n                                break;\r\n                            case 'b':\r\n                                 std::cout << \"This is the cars list under rental ...\\n\";\r\n                                 break;\r\n                            case 'c':\r\n                                 std::cout << \"This is the subscribers list...\\n\";\r\n                                 break;\r\n                            case 'd':\r\n                                 std::cout << \"This is the current subscription book...\\n\";\r\n                                 break;\r\n                            case 'e':\r\n                                 std::cout<<\"This is the Revenue so far...\\n\";\r\n                                 break;\r\n                            default:\r\n                            std::cout << \"Invalid choice!\\n\";\r\n                        }\r\n\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/CarRentalManagement/src/functions_CarManagement.cpp b/source/CarRentalManagement/src/functions_CarManagement.cpp
+--- a/source/CarRentalManagement/src/functions_CarManagement.cpp	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
++++ b/source/CarRentalManagement/src/functions_CarManagement.cpp	(date 1710326405701)
+@@ -1,36 +1,13 @@
+ #include <iostream>
+-#include "headers/functions_CarManagement.h"
+-
+-void addCar(std::vector<Car> &cars) {
+-    Car newCar;
+-    std::cout << "Enter Brand: ";
+-    std::cin >> newCar.brand;
+-    std::cout << "Enter model: ";
+-    std::cin >> newCar.model;
+-    std::cout << "Enter registrationNumber: ";
+-    std::cin >> newCar.registrationNumber;
+-    std::cout<<"Enter Price :";
+-    std::cin>>newCar.price;
+ 
+-    cars.push_back(newCar);
+-    std::cout << "Car added successfully!" << std::endl;
+-}
+-
+-void removeCar(std::vector<Car>& carList) {
+-    std::string registrationNumber;
+-    std::cout << "Enter registration number of the car to remove: ";
+-    std::cin >> registrationNumber;
+-    for (auto it = carList.begin(); it != carList.end(); ++it) {
+-        if (it->registrationNumber == registrationNumber) {
+-            carList.erase(it);
+-            std::cout << "Car removed from rental list." << std::endl;
+-            return;
+-        }
+-    }
+-    std::cout << "Car with registration number " << registrationNumber << " not found in rental list." << std::endl;
+-}
++#include "headers/class_car_management.h"
++#include "headers/core_functions.h"
++#include "headers/manage_car_functions.h"
++#include "headers/subscribers.h"
++#include "headers/subscription.h"
++#include "headers/reports.h"
+ 
+-void manageCar(std::vector<Car>& cars) {
++void manageCar(std::vector<Car> &cars) {
+     char subChoice;
+     std::cout << "Manage Car:\n";
+     std::cout << "a) Add new car\n";
+@@ -57,100 +34,143 @@
+ }
+ 
+ void manageSubscriber() {
+-                     char subChoice;
+-                     std::cout << "Manage Subscriber:\n";
+-                     std::cout << "a) Add new subscriber:\n";
+-                     std::cout << "b) Remove existing subscriber:\n";
+-                     std::cout << "c) Promote Subscription:\n";
+-                     std::cout << "d) Returning to main menu:\n";
+-                     std::cout << "Enter your choice: ";
+-                     std::cin >> subChoice;
++    char subChoice;
++    std::cout << "Manage Subscriber:\n";
++    std::cout << "a) Add new subscriber:\n";
++    std::cout << "b) Remove existing subscriber:\n";
++    std::cout << "c) Promote Subscription:\n";
++    std::cout << "d) Returning to main menu:\n";
++    std::cout << "Enter your choice: ";
++    std::cin >> subChoice;
+ 
+-               switch (subChoice) {
+-                        case 'a':
+-                           std::cout << "Adding new subscriber...\n";
+-                           break;
+-                        case 'b':
+-                            std::cout << "Removing new Subscriber...\n";
+-                            break;
+-                        case 'c':
+-                             std::cout << "Promote Subscription...\n";
+-                             break;
+-                        case 'd':
+-                             std::cout << "Returning to main menu...\n";
+-                             break;
+-                        default:
+-                             std::cout << "Invalid choice!\n";
+-                  }
++    switch (subChoice) {
++        case 'a': {
++            int level_choice;
++            std::string name, id;
++            SubscriptionLevel level;
++            std::cout << "\nName: ";
++            std::cin >> name;
++            std::cout << "ID: ";
++            std::cin >> id;
++            std::cout << "Subscription Level: ";
++            std::cout << "Choose subscription level:\n";
++            std::cout << "1. Silver\n";
++            std::cout << "2. Gold\n";
++            std::cout << "3. Platinum\n";
++            std::cout << "Enter your choice (1, 2, or 3): ";
++            std::cin >> level_choice;
++            switch (level_choice) {
++                case 1:
++                    level = SubscriptionLevel::Silver;
++                case 2:
++                    level = SubscriptionLevel::Gold;
++                case 3:
++                    level = SubscriptionLevel::Platinum;
++                default:
++                    std::cerr << "Invalid choice! Defaulting to Silver.\n";
++                    level = SubscriptionLevel::Silver;
++            }
++            CarRentalSystem::addSubscriber(name, id, level);
++            break;
++        }
++        case 'b': {
++            std::string id;
++            SubscriptionLevel level;
++            std::cout << "Removing new Subscriber...\n";
++            std::cout << "Enter subscriber ID to remove: ";
++            std::cin >> id;
++            CarRentalSystem::removeSubscriberByID(id);
++            break;
++        }
++        case 'c': {
++            int level_choice;
++            std::string id;
++            std::cout << "Promote Subscription...\n";
++            std::cout << "Subscription Level: ";
++            std::cout << "Choose subscription level:\n";
++            std::cout << "1. Silver\n";
++            std::cout << "2. Gold\n";
++            std::cout << "3. Platinum\n";
++            std::cout << "Enter your choice (1, 2, or 3): ";
++            std::cin >> level_choice;
++            CarRentalSystem::promoteSubscriber(id, level_choice);
++            break;
++        }
++        case 'd':
++            std::cout << "Returning to main menu...\n";
++            break;
++        default:
++            std::cout << "Invalid choice!\n";
++    }
+ 
+ }
+ 
+ 
+-
+-
+-void manageSubscription() {
++void manageSubscription(std::vector<Car> &cars) {
+     char subChoice;
+-                  std::cout << "Manage subscription:\n";
+-                     std::cout << "a) Rent a car:\n";
+-                     std::cout << "b) Return a car:\n";
+-                     std::cout << "c) Extend the Rental period:\n";
+-                     std::cout << "Enter your choice: ";
+-                     std::cin >> subChoice;
+-                     switch (subChoice) {
+-                        case 'a':
+-                            std::cout << "Rent Car Successfully...\n";
+-                            break;
+-                        case 'b':
+-                             std::cout << "Returned car Sucessfully...\n";
+-                             break;
+-                        case 'c':
+-                             std::cout << "Extended the Rental Period...\n";
+-                             break;
+-                        default:
+-                              std::cout << "Invalid choice!\n";
+-                     }
+-
+-
+-
+-
+-
+-
+-
++    std::cout << "Manage subscription:\n";
++    std::cout << "a) Rent a car:\n";
++    std::cout << "b) Return a car:\n";
++    std::cout << "c) Extend the Rental period:\n";
++    std::cout << "Enter your choice: ";
++    std::cin >> subChoice;
++    switch (subChoice) {
++        case 'a':
++            std::cout << "Renting a car...\n";
++            // TODO: Implement rentCar function, handle rentedCar, amount, and subscriber level
++            // rentCar(cars, &rentedCar, &amount, subscriberLevel);
++            break;
++        case 'b':
++            std::cout << "Returning a car...\n";
++            // TODO: Implement returnCar function, handle amount, brandName and subscriber level
++            // returnCar(cars, &amount, brandName, regNum);
++            break;
++        case 'c':
++            std::cout << "Extending the Rental period...\n";
++            // TODO: Implement extendRental function, handle amount, brandName and subscriber level
++            // extendRental(cars, &amount, brandName, regNum);
++            break;
++        default:
++            std::cout << "Invalid choice!\n";
++    }
+ }
+ 
+-void reports() {
+-                         char subChoice;
+-                         std::cout << "Reports:\n";
+-                         std::cout << "a) See available car list:\n";
+-                         std::cout << "b) See cars under rental now:\n";
+-                         std::cout << "c) See the subscribers list:\n";
+-                         std::cout << "d) See current subscription book:\n";
+-                         std::cout << "e) See the Revenue so far:\n";
+-                         //std::cout << "Enter your choice: ";                              	                                                	                             	                                                                                                                                                                                                                             std::cout << "d) See current subscription book:\n";
+-                         std::cout << "Enter your choice: ";
+-                         std::cin >> subChoice;
+-                         switch (subChoice) {
+-                            case 'a':
+-                                std::cout << "This is the available car list...\n";
+-
+-                                break;
+-                            case 'b':
+-                                 std::cout << "This is the cars list under rental ...\n";
+-                                 break;
+-                            case 'c':
+-                                 std::cout << "This is the subscribers list...\n";
+-                                 break;
+-                            case 'd':
+-                                 std::cout << "This is the current subscription book...\n";
+-                                 break;
+-                            case 'e':
+-                                 std::cout<<"This is the Revenue so far...\n";
+-                                 break;
+-                            default:
+-                            std::cout << "Invalid choice!\n";
+-                        }
+-
+-
+-
+-
+-}
++void reports(std::vector<Car> &cars) {
++    char subChoice;
++    std::cout << "Reports:\n";
++    std::cout << "a) See available car list:\n";
++    std::cout << "b) See cars under rental now:\n";
++    std::cout << "c) See the subscribers list:\n";
++    std::cout << "d) See current subscription book:\n";
++    std::cout << "e) See the Revenue so far:\n";
++    std::cout << "Enter your choice: ";
++    std::cin >> subChoice;
++    switch (subChoice) {
++        case 'a':
++            std::cout << "This is the available car list...\n";
++            displayCars(cars);
++            break;
++        case 'b':
++            std::cout << "This is the cars list under rental ...\n";
++            // TODO: Implement displayRentedCars function, handle rentedCars
++            displayRentedCars(cars);
++            break;
++        case 'c':
++            std::cout << "This is the subscribers list...\n";
++            // TODO: Implement displaySubscribers function, handle getSubscribers
++            displaySubscribers(Subscriber::getSubscribers());
++            break;
++        case 'd':
++            std::cout << "This is the current subscription book...\n";
++            // TODO: Implement displayCurrentSubscription function, handle rentedCars
++            displayCurrentSubscription(cars);
++            break;
++        case 'e':
++            std::cout << "This is the Revenue so far...\n";
++            // TODO: Implement displayRevenue function, handle amount
++            displayRevenue(amount);
++            break;
++        default:
++            std::cout << "Invalid choice!\n";
++    }
++}
+\ No newline at end of file
+Index: source/CarRentalManagement/src/Class_CarManagement.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/CarRentalManagement/src/Class_CarManagement.h b/source/CarRentalManagement/src/headers/class_car_management.h
+rename from source/CarRentalManagement/src/Class_CarManagement.h
+rename to source/CarRentalManagement/src/headers/class_car_management.h
+--- a/source/CarRentalManagement/src/Class_CarManagement.h	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
++++ b/source/CarRentalManagement/src/headers/class_car_management.h	(date 1710317462940)
+@@ -1,9 +1,9 @@
+-#ifndef CLASS_CARMANAGEMENT_H
+-#define CLASS_CARMANAGEMENT_H
++#ifndef CLASS_CAR_MANAGEMENT_H
++#define CLASS_CAR_MANAGEMENT_H
+ 
+ #include <string>
+ 
+-class Car{
++class Car {
+ public:
+     std::string brand;
+     std::string model;
+Index: source/CarRentalManagement/src/headers/reports.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/CarRentalManagement/src/headers/reports.h b/source/CarRentalManagement/src/headers/reports.h
+new file mode 100644
+--- /dev/null	(date 1710326405712)
++++ b/source/CarRentalManagement/src/headers/reports.h	(date 1710326405712)
+@@ -0,0 +1,17 @@
++#ifndef REPORTS_H
++#define REPORTS_H
++
++#include "headers/class_car_management.h"
++#include "headers/subscribers.h"
++
++void displayCars(const std::vector<Car> &cars);
++
++void displayRentedCars(const std::vector<Car> &RentedCars);
++
++void displaySubscribers(std::vector<Subscriber> subscribers);
++
++void displayCurrentSubscription(const std::vector<Car> &RentedCars);
++
++void displayRevenue(const std::vector<Car> &amount);
++
++#endif
+Index: source/CarRentalManagement/src/manage_cars.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/CarRentalManagement/src/manage_cars.cpp b/source/CarRentalManagement/src/manage_cars.cpp
+new file mode 100644
+--- /dev/null	(date 1710319891297)
++++ b/source/CarRentalManagement/src/manage_cars.cpp	(date 1710319891297)
+@@ -0,0 +1,32 @@
++#include "headers/core_functions.h"
++#include "headers/class_car_management.h"
++#include <iostream>
++
++void addCar(std::vector<Car> &cars) {
++    Car newCar;
++    std::cout << "Enter Brand: ";
++    std::cin >> newCar.brand;
++    std::cout << "Enter model: ";
++    std::cin >> newCar.model;
++    std::cout << "Enter registrationNumber: ";
++    std::cin >> newCar.registrationNumber;
++    std::cout << "Enter Price :";
++    std::cin >> newCar.price;
++
++    cars.push_back(newCar);
++    std::cout << "Car added successfully!" << std::endl;
++}
++
++void removeCar(std::vector<Car> &carList) {
++    std::string registrationNumber;
++    std::cout << "Enter registration number of the car to remove: ";
++    std::cin >> registrationNumber;
++    for (auto it = carList.begin(); it != carList.end(); ++it) {
++        if (it->registrationNumber == registrationNumber) {
++            carList.erase(it);
++            std::cout << "Car removed from rental list." << std::endl;
++            return;
++        }
++    }
++    std::cout << "Car with registration number " << registrationNumber << " not found in rental list." << std::endl;
++}
+\ No newline at end of file
+Index: source/CarRentalManagement/src/CarRental_UI.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include <iostream>\r\n#include <vector>\r\n#include <string>\r\n\r\n#include \"headers/Class_CarManagement.h\"\r\n#include \"headers/functions_CarManagement.h\"\r\n\r\n\r\nusing namespace std;\r\n\r\n\r\nint main() {\r\n    cout << \"----------------------\" << endl;\r\n    cout << \"Company Name : RapidRentals \" << endl;\r\n    cout << \"----------------------\" << endl;\r\n    vector<Car> cars;\r\n    int choice;\r\n\r\n    while (true) {\r\n        cout << \"Main Menu:\\n\";\r\n        cout << \"1. Manage Car\\n\";\r\n        cout << \"2. Manage Subscriber\\n\";\r\n        cout << \"3. Manage Subscription\\n\";\r\n        cout << \"4. Reports\\n\";\r\n        cout << \"5. Exit\\n\";\r\n        cout << \"Enter your choice: \";\r\n        cin >> choice;\r\n\r\n        switch (choice) {\r\n            case 1:\r\n                manageCar(cars);\r\n                break;\r\n            case 2:\r\n                manageSubscriber();\r\n                break;\r\n            case 3:\r\n                manageSubscription();\r\n                break;\r\n            case 4:\r\n                reports();\r\n                break;\r\n            case 5:\r\n                cout << \"Exiting program...\\n\";\r\n                return 0;\r\n            default:\r\n                cout << \"Invalid choice!\\n\";\r\n        }\r\n    }\r\n\r\n    return 0;\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/CarRentalManagement/src/CarRental_UI.cpp b/source/CarRentalManagement/src/CarRental_UI.cpp
+--- a/source/CarRentalManagement/src/CarRental_UI.cpp	(revision 21deac09c1f406c2dffd4debc453ce62dc3d2a16)
++++ b/source/CarRentalManagement/src/CarRental_UI.cpp	(date 1710326405733)
+@@ -1,30 +1,26 @@
+ #include <iostream>
+ #include <vector>
+-#include <string>
+-
+-#include "headers/Class_CarManagement.h"
+-#include "headers/functions_CarManagement.h"
+ 
+-
+-using namespace std;
++#include "headers/class_car_management.h"
++#include "headers/core_functions.h"
+ 
+ 
+ int main() {
+-    cout << "----------------------" << endl;
+-    cout << "Company Name : RapidRentals " << endl;
+-    cout << "----------------------" << endl;
+-    vector<Car> cars;
++    std::cout << "----------------------" << std::endl;
++    std::cout << "Company Name : RapidRentals " << std::endl;
++    std::cout << "----------------------" << std::endl;
++    std::vector<Car> cars;
+     int choice;
+ 
+     while (true) {
+-        cout << "Main Menu:\n";
+-        cout << "1. Manage Car\n";
+-        cout << "2. Manage Subscriber\n";
+-        cout << "3. Manage Subscription\n";
+-        cout << "4. Reports\n";
+-        cout << "5. Exit\n";
+-        cout << "Enter your choice: ";
+-        cin >> choice;
++        std::cout << "Main Menu:\n";
++        std::cout << "1. Manage Car\n";
++        std::cout << "2. Manage Subscriber\n";
++        std::cout << "3. Manage Subscription\n";
++        std::cout << "4. Reports\n";
++        std::cout << "5. Exit\n";
++        std::cout << "Enter your choice: ";
++        std::cin >> choice;
+ 
+         switch (choice) {
+             case 1:
+@@ -34,19 +30,17 @@
+                 manageSubscriber();
+                 break;
+             case 3:
+-                manageSubscription();
++                manageSubscription(cars);
+                 break;
+             case 4:
+-                reports();
++                reports(cars);
+                 break;
+             case 5:
+-                cout << "Exiting program...\n";
++                std::cout << "Exiting program...\n";
+                 return 0;
+             default:
+-                cout << "Invalid choice!\n";
++                std::cout << "Invalid choice!\n";
+         }
+     }
+-
+-    return 0;
+ }
+ 
+Index: source/CarRentalManagement/src/manage_subscription.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/source/CarRentalManagement/src/manage_subscription.cpp b/source/CarRentalManagement/src/manage_subscription.cpp
+new file mode 100644
+--- /dev/null	(date 1710326405729)
++++ b/source/CarRentalManagement/src/manage_subscription.cpp	(date 1710326405729)
+@@ -0,0 +1,220 @@
++#include "headers/subscription.h"
++
++#include <vector>
++#include <iostream>
++
++void bill(std::vector<int> &amount, int tot) {
++    amount.push_back(tot);
++}
++
++std::vector<Car> rentedCars(std::vector<Car> &cars, std::vector<Car> &rentedCar, int choice) {
++    Car obj;
++    obj.brand = cars[choice - 1].brand;
++    obj.model = cars[choice - 1].model;
++    obj.registrationNumber = cars[choice - 1].registrationNumber;
++    rentedCar.push_back(obj);
++}
++
++void displayCars(const std::vector<Car> &cars) {
++    std::cout << "List of Cars:" << std::endl;
++    int i = 1;
++
++    for (const auto &car: cars) {
++        std::cout << i << "\nBrand: " << car.brand << "\nModel: " << car.model << "\nRegistration Number: "
++                  << car.registrationNumber << "\nPrice:" << car.price << std::endl;
++        i++;
++    }
++};
++
++void displayRentedCar(const std::vector<Car> &rentedCar) {
++    std::cout << "List of Cars:" << std::endl;
++    int i = 1;
++
++    for (const auto &car: rentedCar) {
++        std::cout << i << "\nBrand: " << car.brand << "\nModel: " << car.model << "\nRegistration Number: "
++                  << car.registrationNumber << std::endl;
++        i++;
++    }
++};
++
++void displayBill(const std::vector<int> &amount) {
++    std::cout << "List of Cars:" << std::endl;
++    int i = 1;
++
++    for (const auto &car: amount) {
++        std::cout << i << "\nBill: " << car << std::endl;
++        i++;
++    }
++};
++
++void
++extendRental(std::vector<Car> &cars, std::vector<int> &amount, const std::string &brandName, const std::string &num) {
++    int flag;
++    int day;
++    std::string name, _name;
++    do {
++        int i = 0;
++        for (const auto &car: cars) {
++            if ((car.registrationNumber == num) && (car.brand == brandName)) {
++                flag = 1;
++                break;
++            } else {
++                flag = 0;
++            }
++            i++;
++        }
++        if (flag == 1) {
++            std::cout << "How many days you want to extend the rental period?" << std::endl;
++            std::cin >> day;
++            std::cout << "You have to pay:" << day * cars[i].price << std::endl;
++            std::cout << "Have you paid the bill?(yes/no)" << std::endl;
++            std::cin >> name;
++            do {
++                if ((name == "yes") || (name == "y")) {
++                    bill(amount, day * cars[i].price);
++                    std::cout << "Thank You.Have a nice day!";
++                    break;
++                } else {
++                    std::cout << "Please pay the bill." << std::endl;
++                    std::cout << "Have you paid the bill?(y/n)" << std::endl;
++                    std::cin >> name;
++                }
++            } while (name == "y");
++        } else {
++            std::cout << "Invalid credentials,you want to try again?(yes/no)" << std::endl;
++            std::cin >> _name;
++        }
++    } while (_name == "yes");
++}
++
++void returnCar(std::vector<Car> &cars, std::vector<int> &amount, std::string brandName, std::string regNum) {
++    int flag;
++    std::string choice, _choice;
++    do {
++        std::cout << "Do you want to return?(yes/no/exit)";
++        std::cin >> choice;
++        if (choice == "yes") {
++            for (const auto &car: cars) {
++                if ((car.registrationNumber == regNum) && (car.brand == brandName)) {
++                    flag = 1;
++                    break;
++                } else {
++                    flag = 0;
++                }
++            }
++            if (flag == 1) {
++                std::cout << "Thank you for returning the car." << std::endl;
++            } else {
++                std::cout << "The given credentials are not valid to return the car,you want to try again?(yes/no)"
++                          << std::endl;
++                std::cin >> _choice;
++                if (_choice == "no") {
++                    std::cout << "Thank you for using our system." << std::endl;
++                }
++            }
++
++
++        } else if (choice == "no") {
++            extendRental(cars, amount, brandName, regNum);
++        } else {
++            std::cout << "Invalid input,you wanna try again?(yes/no)" << std::endl;
++            std::cin >> _choice;
++        }
++    } while (_choice == "yes");
++};
++
++void
++rentCar(std::vector<Car> &cars, std::vector<Car> &rentedCar, std::vector<int> &amount, std::string subscriberLevel) {
++    int day, choice;
++    std::string decide, ans, option;
++    displayCars(cars);
++    std::cout << "Enter your choice:" << std::endl;
++    std::cin >> choice;
++    std::cout << "How many days you want to rent the  car?";
++    std::cin >> day;
++    std::cout << "Are you sure you want to rent this car (yes/no/exit)" << std::endl;
++    std::cin >> decide;
++    switch (decide[0]) {
++        case 'y':
++        case 'Y':
++            receipt(cars, choice);
++            rentedCars(cars, rentedCar, choice);
++            std::cout << "You have to pay:" << day * cars[choice - 1].price << std::endl;
++            std::cout << "Have you paid the bill?(yes/no)" << std::endl;
++            std::cin >> ans;
++            if (ans == "yes") {
++                bill(amount, day * cars[choice - 1].price);
++                std::cout << "Thanks for using our system." << std::endl;
++            } else {
++                std::cout << "Please pay the bill." << std::endl;
++            }
++            break;
++        case 'n':
++        case 'N':
++            displayCars(cars);
++            std::cout << "Choose your option" << std::endl;
++            std::cin >> choice;
++            std::cout << "How many days you want to rent the  car?";
++            std::cin >> day;
++            receipt(cars, choice);
++            rentedCars(cars, rentedCar, choice);
++            std::cout << "You have to pay:" << day * cars[choice - 1].price << std::endl;
++            std::cout << "Have you paid the bill?(yes/no)" << std::endl;
++            std::cin >> ans;
++            if (ans == "yes") {
++                bill(amount, day * cars[choice - 1].price);
++                std::cout << "Thanks for using our system." << std::endl;
++            } else {
++                std::cout << "Please pay the bill." << std::endl;
++            }
++            break;
++        default:
++            std::cout << "\t\t Thank you for using our system" << std::endl;
++            std::cout << "\t\t-----------------------------" << std::endl;
++            break;
++    }
++
++
++    std::cout << "Do you want to rent another car:(yes/no)";
++    std::cin >> option;
++    if (option == "yes") {
++        switch (subscriberLevel[0]) {
++            case 'S':
++                std::cout << "Please upgrade your subscription to gold or platinum to rent another car." << std::endl;
++                break;
++            case 'G':
++                std::cout << "You can rent one more car. Do you want to? (yes/no)" << std::endl;
++                std::cin >> ans;
++                if (ans == "yes") {
++                    rentCar(cars, rentedCar, amount, subscriberLevel);
++                } else {
++                    std::cout << "Thank you for renting the car." << std::endl;
++                }
++                break;
++            case 'P':
++                std::cout << "You can rent two more cars. Do you want to? (yes/no)" << std::endl;
++                std::cin >> ans;
++                if (ans == "yes") {
++                    rentCar(cars, rentedCar, amount, subscriberLevel);
++                } else {
++                    std::cout << "Thank you for renting the car." << std::endl;
++                }
++                break;
++            default:
++                std::cerr << "Invalid subscriber level." << std::endl;
++                break;
++        }
++    }
++}
++
++void receipt(std::vector<Car> &cars, int choice) {
++    std::cout << "\t\t Car rented Succesfully" << std::endl;
++    std::cout << "\t\t-----------------------------" << std::endl;
++    std::cout << "\t\t Brand:" << cars[choice - 1].brand << std::endl;
++    std::cout << "\t\t Model:" << cars[choice - 1].model << std::endl;
++    std::cout << "\t\t Registration No:" << cars[choice - 1].registrationNumber << std::endl;
++    std::cout << "\t\t Price:" << cars[choice - 1].price << std::endl;
++    std::cout << "\t\t-----------------------------" << std::endl;
++    std::cout << "\t\t Thank You for choosing our sytsem" << std::endl;
++    std::cout << "\t\t-----------------------------" << std::endl;
++}
+\ No newline at end of file
