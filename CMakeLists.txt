@@ -10,7 +10,6 @@ add_executable(Cars_rental_management_system
         source/CarRentalManagement/src/headers/class_car_management.h
         source/CarRentalManagement/src/functions_CarManagement.cpp
         source/CarRentalManagement/src/headers/core_functions.h
-        source/CarRentalManagement/src/trash/report_display.cpp
         source/CarRentalManagement/src/headers/subscribers.h
         source/CarRentalManagement/src/headers/manage_car_functions.h
         source/CarRentalManagement/src/manage_cars.cpp
