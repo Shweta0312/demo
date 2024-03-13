@@ -45,8 +45,7 @@ void manageSubscriber() {
 
     switch (subChoice) {
         case 'a': {
-            int level_choice;
-            std::string name, id;
+            std::string name, id, level_choice;
             SubscriptionLevel level;
             std::cout << "\nName: ";
             std::cin >> name;
@@ -59,16 +58,15 @@ void manageSubscriber() {
             std::cout << "3. Platinum\n";
             std::cout << "Enter your choice (1, 2, or 3): ";
             std::cin >> level_choice;
-            switch (level_choice) {
-                case 1:
-                    level = SubscriptionLevel::Silver;
-                case 2:
-                    level = SubscriptionLevel::Gold;
-                case 3:
-                    level = SubscriptionLevel::Platinum;
-                default:
-                    std::cerr << "Invalid choice! Defaulting to Silver.\n";
-                    level = SubscriptionLevel::Silver;
+            if (level_choice == "1") {
+                level = SubscriptionLevel::Silver;
+            } else if (level_choice == "2") {
+                level = SubscriptionLevel::Gold;
+            } else if (level_choice == "3") {
+                level = SubscriptionLevel::Platinum;
+            } else {
+                std::cerr << "Invalid choice! Defaulting to Silver.\n";
+                level = SubscriptionLevel::Silver;
             }
             CarRentalSystem::addSubscriber(name, id, level);
             break;
@@ -85,6 +83,8 @@ void manageSubscriber() {
             int level_choice;
             std::string id;
             std::cout << "Promote Subscription...\n";
+            std::cout << "Enter subscriber ID to remove: ";
+            std::cin >> id;
             std::cout << "Subscription Level: ";
             std::cout << "Choose subscription level:\n";
             std::cout << "1. Silver\n";
@@ -162,7 +162,7 @@ void reports(std::vector<Car> &cars) {
         case 'd':
             std::cout << "This is the current subscription book...\n";
             // TODO: Implement displayCurrentSubscription function, handle rentedCars
-            displayCurrentSubscription(cars);
+//            displayCurrentSubscription(cars);
             break;
         case 'e':
             std::cout << "This is the Revenue so far...\n";

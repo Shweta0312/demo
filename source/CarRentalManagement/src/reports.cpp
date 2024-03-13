@@ -5,14 +5,6 @@
 #include <vector>
 #include <string>
 
-void displayCars(const std::vector<Car> &cars) {
-    std::cout << "List of Cars:" << std::endl;
-    for (const auto &car: cars) {
-        std::cout << "Brand: " << car.brand << ", Model: " << car.model << ", Registration Number: "
-                  << car.registrationNumber << std::endl;
-    }
-}
-
 void displayRentedCars(const std::vector<Car> &RentedCars) {
     std::cout << "List of Rented Cars:" << std::endl;
     for (const auto &car: RentedCars) {

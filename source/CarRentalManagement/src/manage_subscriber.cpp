@@ -2,7 +2,9 @@
 #include <string>
 #include <utility>
 
-Subscriber::Subscriber(std::string  n, std::string i, SubscriptionLevel l, int max, double disc)
+std::vector<Subscriber> CarRentalSystem::subscribers;
+
+Subscriber::Subscriber(std::string n, std::string i, SubscriptionLevel l, int max, double disc)
         : name(std::move(n)), id(std::move(i)), level(l), maxCars(max), discount(disc) {}
 
 std::string Subscriber::getName() const {
@@ -108,4 +110,5 @@ std::string CarRentalSystem::levelToString(SubscriptionLevel level) {
         case SubscriptionLevel::Platinum:
             return "Platinum";
     }
+    return "Silver";
 }

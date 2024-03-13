@@ -2,6 +2,7 @@
 #define CORE_FUNCTIONS_H
 
 #include <vector>
+#include "class_car_management.h"
 
 
 void manageCar(std::vector<Car> &cars);
