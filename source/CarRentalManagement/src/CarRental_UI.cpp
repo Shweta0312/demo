@@ -33,7 +33,7 @@ int main() {
                 manageSubscription(cars);
                 break;
             case 4:
-                reports();
+                reports(cars);
                 break;
             case 5:
                 std::cout << "Exiting program...\n";
