@@ -14,7 +14,8 @@ void displayRentedCar(const std::vector<Car> &rentedCar);
 
 void displayBill(const std::vector<int> &amount);
 
-void extendRental(std::vector<Car> &cars, std::vector<int> &amount, const std::string &brandName, const std::string& num);
+void
+extendRental(std::vector<Car> &cars, std::vector<int> &amount, const std::string &brandName, const std::string &num);
 
 void returnCar(std::vector<Car> &cars, std::vector<int> &amount, std::string brandName, std::string regNum);
 
