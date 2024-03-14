@@ -83,8 +83,6 @@ void manageSubscriber() {
             int level_choice;
             std::string id;
             std::cout << "Promote Subscription...\n";
-            std::cout << "Enter subscriber ID to remove: ";
-            std::cin >> id;
             std::cout << "Subscription Level: ";
             std::cout << "Choose subscription level:\n";
             std::cout << "1. Silver\n";
