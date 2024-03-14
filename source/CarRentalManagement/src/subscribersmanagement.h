@@ -1,8 +1,6 @@
-#ifndef SUBSCRIBERS_MANAGEMENT_H
-#define SUBSCRIBERS_MANAGEMENT_H
-
+#ifndef subscribersmanagement_h
+#define subscribersmanagement_h
 #include <iostream>
-#include <utility>
 #include <vector>
 #include <string>
 
@@ -21,33 +19,23 @@ private:
     double discount;
 
 public:
-    Subscriber(std::string  n, std::string i, SubscriptionLevel l, int max, double disc);
-
+    Subscriber(std::string n, std::string i, SubscriptionLevel l, int max, double disc);
     std::string getName() const;
-
-    std::string getID();
-
+    std::string getID() const;
     SubscriptionLevel getLevel() const;
-
     int getMaxCars() const;
-
     double getDiscount() const;
-
     void setLevel(SubscriptionLevel newLevel);
-
 };
 
 class CarRentalSystem {
 private:
-    static std::vector<Subscriber> subscribers;
+    std::vector<Subscriber> subscribers;
 
 public:
-    static void addSubscriber(const std::string &name, const std::string &id, SubscriptionLevel level);
-
-    static void removeSubscriberByID(const std::string &id);
-
-    static void promoteSubscriber(const std::string &id, int newLevel);
-
+    void addSubscriber(const std::string& name, const std::string& id, SubscriptionLevel level);
+    void removeSubscriberByID(const std::string& id);
+    void promoteSubscriber(const std::string& id, int newLevel);
     static std::string levelToString(SubscriptionLevel level);
 };
 

@@ -6,16 +6,14 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(source/CarRentalManagement/src)
 
 add_executable(Cars_rental_management_system
+        source/CarRentalManagement/src/Class_CarManagement.h
+        source/CarRentalManagement/src/functions_CarManagement.h
+        source/CarRentalManagement/src/report_display.cpp
+        source/CarRentalManagement/src/report_display.h
+        source/CarRentalManagement/src/subscribersmanagement.cpp
+        source/CarRentalManagement/src/subscribersmanagement.h
+        source/CarRentalManagement/src/SubscriptionManagement.cpp
+        source/CarRentalManagement/src/SubscriptionManagement.h
         source/CarRentalManagement/src/CarRental_UI.cpp
-        source/CarRentalManagement/src/manage_cars.cpp
-        source/CarRentalManagement/src/manage_subscriber.cpp
-        source/CarRentalManagement/src/manage_subscription.cpp
-        source/CarRentalManagement/src/reports.cpp
-        source/CarRentalManagement/src/headers/manage_car_functions.h
-        source/CarRentalManagement/src/headers/reports.h
-        source/CarRentalManagement/src/headers/class_car_management.h
-        source/CarRentalManagement/src/headers/core_functions.h
-        source/CarRentalManagement/src/headers/subscribers.h
-        source/CarRentalManagement/src/headers/subscription.h
         source/CarRentalManagement/src/functions_CarManagement.cpp
 )

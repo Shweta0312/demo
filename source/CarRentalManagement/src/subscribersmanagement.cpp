@@ -1,17 +1,13 @@
-#include "headers/subscribers.h"
-#include <string>
-#include <utility>
-
-std::vector<Subscriber> CarRentalSystem::subscribers;
+#include "subscribersmanagement.h"
 
 Subscriber::Subscriber(std::string n, std::string i, SubscriptionLevel l, int max, double disc)
-        : name(std::move(n)), id(std::move(i)), level(l), maxCars(max), discount(disc) {}
+        : name(n), id(i), level(l), maxCars(max), discount(disc) {}
 
 std::string Subscriber::getName() const {
     return name;
 }
 
-std::string Subscriber::getID() {
+std::string Subscriber::getID() const {
     return id;
 }
 
@@ -34,6 +30,7 @@ void Subscriber::setLevel(SubscriptionLevel newLevel) {
 void CarRentalSystem::addSubscriber(const std::string &name, const std::string &id, SubscriptionLevel level) {
     int maxCars;
     double discount;
+
     switch (level) {
         case SubscriptionLevel::Silver:
             maxCars = 1;
@@ -50,6 +47,11 @@ void CarRentalSystem::addSubscriber(const std::string &name, const std::string &
     }
 
     subscribers.emplace_back(name, id, level, maxCars, discount);
+
+    std::cout << "Subscriber added successfully:" << std::endl;
+    std::cout << "Name: " << name << std::endl;
+    std::cout << "ID: " << id << std::endl;
+    std::cout << "Subscription Level: " << levelToString(level) << std::endl;
 }
 
 void CarRentalSystem::removeSubscriberByID(const std::string &id) {
@@ -59,7 +61,7 @@ void CarRentalSystem::removeSubscriberByID(const std::string &id) {
             std::cout << "Name: " << it->getName() << std::endl;
             std::cout << "ID: " << it->getID() << std::endl;
             std::cout << "Subscription Level: " << levelToString(it->getLevel()) << std::endl;
-            subscribers.erase(it);
+            subscribers.erase(it); // Erase the element and update the iterator
             return;
         }
     }
@@ -70,15 +72,16 @@ void CarRentalSystem::promoteSubscriber(const std::string &id, int newLevel) {
     for (auto &subscriber: subscribers) {
         if (subscriber.getID() == id) {
             SubscriptionLevel currentLevel = subscriber.getLevel();
+            std::cout << "Current Level: " << levelToString(currentLevel) << std::endl;
             SubscriptionLevel level;
             switch (newLevel) {
-                case 0:
+                case 1:
                     level = SubscriptionLevel::Silver;
                     break;
-                case 1:
+                case 2:
                     level = SubscriptionLevel::Gold;
                     break;
-                case 2:
+                case 3:
                     level = SubscriptionLevel::Platinum;
                     break;
                 default:
@@ -110,5 +113,6 @@ std::string CarRentalSystem::levelToString(SubscriptionLevel level) {
         case SubscriptionLevel::Platinum:
             return "Platinum";
     }
-    return "Silver";
+    return "";
 }
+

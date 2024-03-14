@@ -1,45 +1,56 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
-#include "headers/class_car_management.h"
-#include "headers/core_functions.h"
+#include "Class_CarManagement.h"
+#include "functions_CarManagement.h"
+//#include "subscribersmanagement.cpp"
+//#include "subscribersmanagement.h"
+//#include "report_display.cpp"
+//#include "SubscriptionManagement.cpp"
+using namespace std;
 
+vector<Car> cars;
+vector<Subscriber> subscriber;
+CarRentalSystem carRentalSystem;
+vector<Car> rentedCar;
+vector<int> amount;
 
 int main() {
-    std::cout << "----------------------" << std::endl;
-    std::cout << "Company Name : RapidRentals " << std::endl;
-    std::cout << "----------------------" << std::endl;
-    std::vector<Car> cars;
+    cout << "----------------------" << endl;
+    cout << "Company Name : RapidRentals " << endl;
+    cout << "----------------------" << endl;
+
     int choice;
 
     while (true) {
-        std::cout << "Main Menu:\n";
-        std::cout << "1. Manage Car\n";
-        std::cout << "2. Manage Subscriber\n";
-        std::cout << "3. Manage Subscription\n";
-        std::cout << "4. Reports\n";
-        std::cout << "5. Exit\n";
-        std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        cout << "Main Menu:\n";
+        cout << "1. Manage Car\n";
+        cout << "2. Manage Subscriber\n";
+        cout << "3. Manage Subscription\n";
+        cout << "4. Reports\n";
+        cout << "5. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
 
         switch (choice) {
             case 1:
                 manageCar(cars);
                 break;
             case 2:
-                manageSubscriber();
+                manageSubscriber(carRentalSystem);
                 break;
             case 3:
-                manageSubscription(cars);
+                manageSubscription(cars, amount, rentedCar);
                 break;
             case 4:
-                reports(cars);
+                reports(cars, subscriber);
                 break;
             case 5:
-                std::cout << "Exiting program...\n";
+                cout << "Exiting program...\n";
                 return 0;
             default:
-                std::cout << "Invalid choice!\n";
+                cout << "Invalid choice!\n";
         }
     }
 }
